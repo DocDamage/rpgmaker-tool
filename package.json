@@ -28,7 +28,8 @@
     "verify:release": "npm run verify && npm run dist:dir",
     "dist": "electron-builder --publish never",
     "dist:dir": "electron-builder --dir --publish never",
-    "dist:signed": "electron-builder --publish never --config.forceCodeSigning=true"
+    "dist:signed": "electron-builder --publish never --config.forceCodeSigning=true",
+    "dist:update": "node scripts/build-update-release.js"
   },
   "window": {
     "title": "Hybrid Tile Studio",

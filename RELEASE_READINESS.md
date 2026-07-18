@@ -23,7 +23,6 @@ These cannot be inherited from the Studio source package. They must be completed
 - Exercise save creation, save reload, and any supported migration path.
 - Review third-party plugin compatibility and representative frame timing.
 - Produce platform packages with publicly trusted signing/notarization credentials.
-- Configure an update provider, publish matching metadata and binaries, and verify update detection/download/install from a previously shipped version.
+- Set the CI `HTG_UPDATE_URL` secret, publish the matching metadata and binaries produced by `npm run dist:update`, and verify update detection/download/install from a previously shipped version.
 
 The Studio deliberately reports these states as required, stale, skipped, or not run; it must never convert a structural or launch check into player evidence.
-

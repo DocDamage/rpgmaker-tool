@@ -24,11 +24,9 @@ jobs:
         run: npx playwright install chromium --with-deps
       - if: matrix.os == 'ubuntu-latest'
         run: npm run test:e2e
-      - if: matrix.os == 'ubuntu-latest'
-        run: npm run dist
-      - if: matrix.os != 'ubuntu-latest'
-        run: npm run dist:signed
+      - run: npm run dist:update
         env:
+          HTG_UPDATE_URL: ${{ secrets.HTG_UPDATE_URL }}
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}

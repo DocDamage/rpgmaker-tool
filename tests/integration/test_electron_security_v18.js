@@ -1,6 +1,7 @@
 "use strict";
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const { normalizeUpdateUrl, releaseConfig } = require("../../scripts/build-update-release.js");
 
 const source = fs.readFileSync("electron-main.js", "utf8");
 
@@ -36,5 +37,15 @@ assert.match(source, /sandbox: true/);
 assert.match(source, /webSecurity: true/);
 assert.match(source, /allowRunningInsecureContent: false/);
 assert.match(source, /setPermissionRequestHandler\([\s\S]*callback\(false\)/);
+
+// Update-enabled releases require an explicit credential-free HTTPS feed and
+// enforce platform signing without publishing from the build process.
+assert.equal(normalizeUpdateUrl("https://updates.example.com/hybrid/"), "https://updates.example.com/hybrid");
+assert.throws(() => normalizeUpdateUrl("http://updates.example.com/hybrid"), /HTTPS/);
+assert.throws(() => normalizeUpdateUrl("https://user:secret@updates.example.com/hybrid"), /credentials/);
+assert.throws(() => normalizeUpdateUrl("https://updates.example.com/hybrid?channel=stable"), /query string/);
+assert.deepEqual(releaseConfig("linux", { HTG_UPDATE_URL: "https://updates.example.com/hybrid" }), { publish: [{ provider: "generic", url: "https://updates.example.com/hybrid" }] });
+assert.equal(releaseConfig("win32", { HTG_UPDATE_URL: "https://updates.example.com/hybrid" }).forceCodeSigning, true);
+assert.equal(releaseConfig("darwin", { HTG_UPDATE_URL: "https://updates.example.com/hybrid" }).forceCodeSigning, true);
 
 console.log("Hybrid Tile Studio v18.1 Electron boundary, atomic-write, and recent-project assertions passed.");

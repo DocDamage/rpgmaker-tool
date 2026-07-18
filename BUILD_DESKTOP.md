@@ -60,11 +60,13 @@ Unsigned local builds are suitable for testing. Shipping trusted installers requ
 
 Use `npm run dist:signed` to fail the build if a signing identity is missing. Never commit certificates, private keys, or passwords. Ed25519 world-pack keys are independent of OS installer-signing credentials.
 
-The tag workflow enforces `dist:signed` on Windows and macOS and refuses to upload missing artifacts. A self-signed development certificate proves that the signing pipeline works but does not establish public OS trust; public releases require a certificate whose chain is trusted on clean user machines.
+The tag workflow enforces signing on Windows and macOS through `dist:update` and refuses to upload missing artifacts. A self-signed development certificate proves that the signing pipeline works but does not establish public OS trust; public releases require a certificate whose chain is trusted on clean user machines.
 
 ## Updates
 
 `electron-updater` is wired to the Project panel but only checks from a packaged build. Configure an Electron Builder publish provider in CI and publish each installer together with its generated `latest*.yml` metadata. Do not mix metadata and binaries from different builds. macOS update builds must be signed/notarized; Windows updates use the NSIS target.
+
+Release CI uses `npm run dist:update`. It requires `HTG_UPDATE_URL` to be an HTTPS generic-provider base URL, generates matching update metadata without publishing, and enforces code signing on Windows/macOS. Publishing the resulting binaries, blockmaps, and `latest*.yml` files remains a separately approved deployment action.
 
 The PWA update path is separate: a new service worker waits for explicit user acceptance, then reloads into a content-hash-verified shell.
 

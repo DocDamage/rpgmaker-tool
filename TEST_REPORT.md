@@ -16,6 +16,7 @@ This report records verification against the current source tree. Source-package
 | `npm run test:e2e:file` | PASS | All three local-file journeys passed with the supported service-worker exception. |
 | `npm run dist:dir` | PASS | Electron Builder produced the Windows x64 unpacked application. |
 | `npm run dist:signed -- --win ...certificateSha1=...` | PASS | NSIS, portable, and ZIP targets built; all Windows executables contain the selected Authenticode signature and a DigiCert timestamp. |
+| `npm run dist:update` without `HTG_UPDATE_URL` | EXPECTED BLOCK | The release builder refuses to create updater artifacts without an explicit HTTPS provider. URL validation and signing policy tests pass. |
 | `npm run verify:release` | PASS | The consolidated deterministic, browser, generated-source, and unpacked-package gate completed successfully. |
 
 ## Application coverage
