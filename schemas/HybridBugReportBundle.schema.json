@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridBugReportBundle.schema.json",
+  "title": "Hybrid Bug Report Bundle",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "title",
+    "createdAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "format": {
+      "const": "HybridBugReportBundle"
+    },
+    "version": {
+      "const": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": [
+        "string",
+        "number"
+      ]
+    },
+    "mapId": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "player": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "steps": {
+      "type": "array"
+    },
+    "expected": {
+      "type": "string"
+    },
+    "actual": {
+      "type": "string"
+    },
+    "fingerprint": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

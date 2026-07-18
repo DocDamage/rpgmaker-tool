@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridReleaseManifest.schema.json",
+  "title": "Hybrid Tile Studio Release Manifest",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "createdAt",
+    "fingerprint"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridReleaseManifest"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "channel": {
+      "enum": [
+        "dev",
+        "preview",
+        "stable"
+      ]
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    },
+    "releaseVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "project": {
+      "type": "string"
+    },
+    "verificationPolicyVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "budgets": {
+      "type": "object"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "required",
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "failed",
+              "skipped",
+              "stale",
+              "not-run",
+              "baseline",
+              "changed"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "realPlaytest": {
+      "type": "object"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "targets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "signing": {
+      "type": "object"
+    },
+    "updates": {
+      "type": "object"
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflow": {
+      "type": "string"
+    },
+    "fingerprintInfo": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "canonicalizationVersion",
+        "digest",
+        "id"
+      ],
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha256",
+            "fnv1a32"
+          ]
+        },
+        "canonicalizationVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{8}|[0-9a-f]{64})$"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "channel",
+          "targets",
+          "exclusions"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 2
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "releaseVersion",
+          "project",
+          "verificationPolicyVersion",
+          "budgets",
+          "evidence",
+          "realPlaytest",
+          "limitations"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

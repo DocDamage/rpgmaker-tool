@@ -1,0 +1,27 @@
+{
+  "$schema": "../schemas/HybridStudioExtension.schema.json",
+  "format": "HybridTileStudioExtension",
+  "id": "example.creator-insights-v15",
+  "name": "Creator Insights v15 Example",
+  "version": "1.0.0",
+  "description": "Declarative, least-privilege example for Worker probing and publisher verification.",
+  "publisher": "local-example",
+  "publisherFingerprint": "LOCAL-EXAMPLE-V15",
+  "permissions": ["map:read", "project:validate", "ui:contribute"],
+  "contributes": {
+    "brushes": [],
+    "generators": [],
+    "validators": [{ "id": "example.creator-insights-v15.passability", "name": "Passability Notes" }],
+    "recipeNodes": [],
+    "panels": [{ "id": "example.creator-insights-v15.panel", "title": "Creator Insights" }]
+  },
+  "sandbox": {
+    "isolation": "worker",
+    "timeBudgetMs": 16,
+    "memoryBudgetKb": 1024,
+    "payloadBudgetKb": 1024,
+    "network": false,
+    "fileRead": ["data/Map*.json", "data/Tilesets.json"],
+    "fileWrite": []
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridQuestProject.schema.json",
+  "title": "Hybrid Quest Project",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "format": {
+      "const": "HybridQuestProject"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "start",
+              "objective",
+              "choice",
+              "dialogue",
+              "reward",
+              "transfer",
+              "complete",
+              "fail"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "conditions": {
+            "type": "array"
+          },
+          "rewards": {
+            "type": "array"
+          },
+          "rewardGold": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "targetMapId": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "targetX": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "targetY": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "cues": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "unreachable": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "questHash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

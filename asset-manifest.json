@@ -1,0 +1,307 @@
+{
+  "format": "HybridTileAssetManifest",
+  "version": 1,
+  "appVersion": "18.1.0",
+  "core": [
+    "./",
+    "./HybridTileStudio.html",
+    "./HybridTileStudio.css",
+    "./HybridTileStudioV18.css",
+    "./HybridTileCryptoV18.js",
+    "./HybridTileStorageV18.js",
+    "./HybridTileSchemasV18.js",
+    "./HybridTileSchemaV18.js",
+    "./HybridTilePwaV18.js",
+    "./HybridTileStudio.js",
+    "./HybridTileStudioServicesV18.js",
+    "./HybridTileStudioV18.js",
+    "./HybridTileWorker.js",
+    "./HybridTileStudio.png",
+    "./HybridTileGuide.png",
+    "./manifest.webmanifest",
+    "./asset-manifest.json",
+    "./examples/PracticeMap001.json"
+  ],
+  "assets": {
+    "HybridTileCryptoV18.js": {
+      "sha256": "3d0fa2080b5f6701d56a72324534d03a84d78dc882146cd96d48554f00ff76c6",
+      "bytes": 6058
+    },
+    "HybridTileGraft.js": {
+      "sha256": "a8eebca67a44f19460c91b38e126c6890d9ebee63172d5d1d93acf601613c247",
+      "bytes": 969226
+    },
+    "HybridTilePwaV18.js": {
+      "sha256": "199452ae269d597f8c3138b13ac971bad8af41a4717bdda3dc21a90931a333cc",
+      "bytes": 1417
+    },
+    "HybridTileSchemaV18.js": {
+      "sha256": "a60e1c6ffb8b1f180eb96e3bb29787c5a9a1232f22235b70ae3b1a6d69636bce",
+      "bytes": 8295
+    },
+    "HybridTileSchemasV18.js": {
+      "sha256": "d90ece363d3d64811ad998f03609e064da4000f4f54cf2ab2d6cd95851a3a5f8",
+      "bytes": 38040
+    },
+    "HybridTileStorageV18.js": {
+      "sha256": "6d0ddc6dc81aca0a7d944535e6a5b8aea20f5af21cbd96d3a26738b9f9c80e92",
+      "bytes": 4653
+    },
+    "HybridTileStudio.css": {
+      "sha256": "eb5db6009882d361b5c958ae92d7451ccbd3b3f733653da7a58f7056f475172b",
+      "bytes": 12870
+    },
+    "HybridTileStudio.html": {
+      "sha256": "8a56fae3387cf7eee904479af55edc82a95d9b19dc1c601157c727fe711371a5",
+      "bytes": 39904
+    },
+    "HybridTileStudio.js": {
+      "sha256": "30143678256426af9161c5eeb6caaad642f0bc17e62220424f685bb791af7ed5",
+      "bytes": 170837
+    },
+    "HybridTileStudioServicesV18.js": {
+      "sha256": "518ff707f820cdefbece8971054bcc212a794041292d078313990dabfac80067",
+      "bytes": 17853
+    },
+    "HybridTileStudioV10.css": {
+      "sha256": "16779629e0bc77137e7ce45df6c3f9d28a81f8a03a72d9f0c9bcdc0863e39620",
+      "bytes": 24028
+    },
+    "HybridTileStudioV10.js": {
+      "sha256": "c8bb94b1d0a0e932ffaf9c36965743b7d1c533b3fa2051549a62f3a0a1ae5f12",
+      "bytes": 74232
+    },
+    "HybridTileStudioV11.css": {
+      "sha256": "9e861ceed69e58c3ce321d839ae5ca281bbd75278e104379e7398a2a0ead2a0b",
+      "bytes": 13401
+    },
+    "HybridTileStudioV11.js": {
+      "sha256": "5c1f6d5fccc618e3d6e8f924466f6fd02b9324d1f6690e91ce10a2dcd7074a05",
+      "bytes": 85978
+    },
+    "HybridTileStudioV12.css": {
+      "sha256": "4102caba8384b3ec92924a8e06ab2fb5991e50d6bd204630e974e087412d9845",
+      "bytes": 30083
+    },
+    "HybridTileStudioV12.js": {
+      "sha256": "d4182e30e3931be65edeafe354e4a6e66a602fc91babb5ce97c0506f933193d0",
+      "bytes": 70382
+    },
+    "HybridTileStudioV13.css": {
+      "sha256": "13305b46f42e7aa9f362d9fea3147fc23616e852b401e1ee251bc5526a607bfa",
+      "bytes": 32118
+    },
+    "HybridTileStudioV13.js": {
+      "sha256": "f592187c442db0fd80eb1ab6d55dfaa7e6d52590f702c0b0325493bcf266b395",
+      "bytes": 88192
+    },
+    "HybridTileStudioV14.css": {
+      "sha256": "4c8f14d52669414002144c4b48987067ff93d88fdb3546c5f7f08c1eeb496cb1",
+      "bytes": 32131
+    },
+    "HybridTileStudioV14.js": {
+      "sha256": "9b8cf2b261b680d0f1fd04c95d4ee9b0be9989bcb12385c8e997efd38c32d596",
+      "bytes": 86281
+    },
+    "HybridTileStudioV15.css": {
+      "sha256": "11ae4ab59e84924ecc4e36736618dd0ec1fbab8e6417d53670b85b9baa545d5e",
+      "bytes": 50142
+    },
+    "HybridTileStudioV15.js": {
+      "sha256": "9405c725750daa243fb01ffff317fb208d2933d25c8988477a67ca95dfed2866",
+      "bytes": 146791
+    },
+    "HybridTileStudioV16.css": {
+      "sha256": "849ac63dd1046e67a425c518946feabcc6355dc1fd8a885c8722a5587de19d75",
+      "bytes": 37263
+    },
+    "HybridTileStudioV16.js": {
+      "sha256": "2ec33b2761f932cad65bc994af4eb02ee606e823b3151664af7846a8dafb4a7b",
+      "bytes": 78946
+    },
+    "HybridTileStudioV18.css": {
+      "sha256": "610746f964bbf6d2e055fef5472a61ffa0cc8f52033bfdaa6f79a19eb3549e2f",
+      "bytes": 34364
+    },
+    "HybridTileStudioV18.js": {
+      "sha256": "1ebae2d9cbb0c5d1999eaf8ceba844eac2c3ff48593fbebd73b22636e4e9b02f",
+      "bytes": 161354
+    },
+    "HybridTileStudioV9.js": {
+      "sha256": "245624dd497bf18786d1e5f615778a2159a38e2d9e867ba9d2dbce41d8d0edfc",
+      "bytes": 102838
+    },
+    "HybridTileWorker.js": {
+      "sha256": "abbb9d1dc13180226b5a011dc4eb743c29828d0baee12a8350dca9be5804a66c",
+      "bytes": 12191
+    },
+    "electron-main.js": {
+      "sha256": "1f4aa0a8d80522d4e3f4591e5a00164ac4c8ac664e651b9292f3af4ee6892c66",
+      "bytes": 11865
+    },
+    "electron-preload.js": {
+      "sha256": "85ec485aaf996fc5cfc3ede1e57939893e3a3b3e6dcca1e02b0edab54f1edb19",
+      "bytes": 1897
+    },
+    "examples/ExamplePlaytestRecording.htgrecording": {
+      "sha256": "a7ba0b54d17eda4be555535d756668448f91dfbe78eebdfe39774116745a331d",
+      "bytes": 1399
+    },
+    "examples/ExamplePlaytestScenario.htgscenario": {
+      "sha256": "54ab3f2bb82106332d6c7594ebfa654fef689bf4fcb8c50f4ac2889b0eed8ec5",
+      "bytes": 876
+    },
+    "examples/HybridWorldRecipes.json": {
+      "sha256": "4769606113a0be03136de83a04c93d447948247e6a21a2ffa90d688bbab5da40",
+      "bytes": 5926
+    },
+    "examples/PracticeMap001.json": {
+      "sha256": "406de7d37893e041027e6896fff0eb27606d7f5a402a0d10f74ba639085a6c62",
+      "bytes": 2786
+    },
+    "examples/StarterContentCatalog.htgcatalog": {
+      "sha256": "e1e41c7649d328c96bb2cc7a51f180493fc49279cb07261307a896ae48787f55",
+      "bytes": 2997
+    },
+    "examples/StarterContentLibrary.htgcontent": {
+      "sha256": "638b203289f06c8cdcba51794f3bcf51558c2ff6a9131a025b17b6744a04018b",
+      "bytes": 520
+    },
+    "examples/StarterQuest.htgquest": {
+      "sha256": "7c4d5199c5b03c628bc7c8e99f7a03ad070a21dd6ef3c45e8d60c20a03d2e0f5",
+      "bytes": 1307
+    },
+    "examples/StarterWorldPack.htgworld": {
+      "sha256": "5bd742bfef1635a2eb9883ca3731aa309eaace3470d7bacc7b8f54bab6341917",
+      "bytes": 3274
+    },
+    "examples/StarterWorldRecipeGraph.htggraph": {
+      "sha256": "83b19be05ff1a3be5b5545789a51f4c6a2d89ee3fb7d8bd522ef1b86fe73ea20",
+      "bytes": 1262
+    },
+    "extensions/example-extension.js": {
+      "sha256": "7ddb48c0e5d4e52970bf91991c6c9bfcf5a4c817f4806572237585b8dd0fa17e",
+      "bytes": 528
+    },
+    "extensions/example-v13-extension.json": {
+      "sha256": "d4b31cb09be4d6405639c4a85cfa3d6091bf50deb8fe04523c6a55e77887b295",
+      "bytes": 620
+    },
+    "extensions/example-v14-extension.json": {
+      "sha256": "af459df9d33ba73c6f6023c2b8282785c929591ceb98a46a95da4a85faa158d8",
+      "bytes": 733
+    },
+    "extensions/example-v15-extension.json": {
+      "sha256": "d730ee3d55870846bcb7c20f149bf325ab71bb08d6a1384769f5bb663d0de49f",
+      "bytes": 971
+    },
+    "extensions/example-v16-extension.json": {
+      "sha256": "c17822f063ccce271e4eb77139d23b5cf1d05ffbcbf2d118a4ac413f85f03488",
+      "bytes": 1201
+    },
+    "manifest.webmanifest": {
+      "sha256": "12d1d40a594b92aef3ab93b7074a51f8980170ba67d1b16804b991d26952f7ef",
+      "bytes": 583
+    },
+    "package.json": {
+      "sha256": "5aa4b730898ebcbc5c1f5f509247c0165c70950881ba3dda4e4ef0c65d777093",
+      "bytes": 9245
+    },
+    "package.nw.json": {
+      "sha256": "82353bd8eca5e24f005aa1c2096d89660fd5828aa965053bbb827759c8064d01",
+      "bytes": 325
+    },
+    "schemas/HybridBugReportBundle.schema.json": {
+      "sha256": "afab958de06285d884bc46e543f750078d267e540944129a077a1325d990daa1",
+      "bytes": 1006
+    },
+    "schemas/HybridCollaborationBundle.schema.json": {
+      "sha256": "5134d2f4c5840e1747c6a6d3c45bc1aa7913715bbf35c8d256a919531373fcfc",
+      "bytes": 1851
+    },
+    "schemas/HybridCollaborationMergePlan.schema.json": {
+      "sha256": "5afa924b2499ccca7219a483683b07c1d6debd5fd808cd4e7fa749881b5874f0",
+      "bytes": 950
+    },
+    "schemas/HybridCompatibilityProfile.schema.json": {
+      "sha256": "3349e589b68a1733f538f928903eacc0925190d56a5131521c10cf96b46f5b33",
+      "bytes": 1005
+    },
+    "schemas/HybridContentCatalog.schema.json": {
+      "sha256": "1647259eb07f725722dbe6977c381b3c0fec71bb94f37222d3a0007f6f902bf4",
+      "bytes": 3208
+    },
+    "schemas/HybridContentLibrary.schema.json": {
+      "sha256": "7dd2d06b057952f168f426ed48bb45a8a53a678cfe073de2f763a830048a7817",
+      "bytes": 1856
+    },
+    "schemas/HybridCutsceneTimeline.schema.json": {
+      "sha256": "36419dffc87e94109b62a7f9d25eba55de67839bdd56f40a86dff36973ce9f7e",
+      "bytes": 1484
+    },
+    "schemas/HybridHeadlessTestManifest.schema.json": {
+      "sha256": "3b0c1bc0dc4c8512928955245093c6d9e35027d6920537be8932bdbb4f4db356",
+      "bytes": 1127
+    },
+    "schemas/HybridPlaytestJourney.schema.json": {
+      "sha256": "c38f8ca0e2c4e7c0c0fcd7c6e31bc7dc6ac8764cc8322fffdd8cb215a5cb4b1b",
+      "bytes": 1941
+    },
+    "schemas/HybridPlaytestRecording.schema.json": {
+      "sha256": "39da0c7d873e26a2d8723f7a5c9883778b0efafd24568e710a785854a729a1cf",
+      "bytes": 3507
+    },
+    "schemas/HybridPlaytestScenario.schema.json": {
+      "sha256": "ed9a97c4ce5f85de6df5240546566c7d23517991b9596cfc527d7bdc0ad2b0e5",
+      "bytes": 2020
+    },
+    "schemas/HybridProductionDashboard.schema.json": {
+      "sha256": "1e46919d953ad4bfe1b5841e960a72ae7e85b0f7a940705f8ffa2aebc3a7514f",
+      "bytes": 1230
+    },
+    "schemas/HybridProjectMergePlan.schema.json": {
+      "sha256": "3f7a5c4d709716d94d66d0fd7b51e2e281b0cbd201ccd350d3086d35a3fff64d",
+      "bytes": 1076
+    },
+    "schemas/HybridQuestProject.schema.json": {
+      "sha256": "cae017745e9fe8285afa11a7012cfdd6e29c9e9ef7f25a2e62c51f31e291ea9b",
+      "bytes": 2345
+    },
+    "schemas/HybridReleaseFingerprint.schema.json": {
+      "sha256": "56669c947ef5eb281c8677e0ee30ce83137478a56a36968a468c64604b67bc7e",
+      "bytes": 1553
+    },
+    "schemas/HybridReleaseManifest.schema.json": {
+      "sha256": "d3f41aca74324db681de4ec870ca0871b8241ea5908456dd92fd25ff0962ecce",
+      "bytes": 3808
+    },
+    "schemas/HybridStudioExtension.schema.json": {
+      "sha256": "ff86b9fb37c3a31dc10ef1db5089a0f5cb147e14dde7448bb7c499bf88d66db5",
+      "bytes": 4097
+    },
+    "schemas/HybridUniversalRecoveryPoint.schema.json": {
+      "sha256": "6ee6b114acbeefcbaaa4010a050e89e249c13aa1abbe2e6ebf2a125e4aeb53d5",
+      "bytes": 1442
+    },
+    "schemas/HybridVisualMapDraft.schema.json": {
+      "sha256": "463cedfa88b9325e9de9491bcb73d14b83fdc4d97aafc639774982ccf086fe56",
+      "bytes": 4075
+    },
+    "schemas/HybridWorldPack.schema.json": {
+      "sha256": "b54a68c68251ef925c0c392021114b9abdba6964a60e0728ad84dd3b6c2a98af",
+      "bytes": 6179
+    },
+    "schemas/HybridWorldRecipeGraph.schema.json": {
+      "sha256": "f6e1d2efac0bd33c1c0ad29ac256cd49e4d8c727e3aa87b83b57df702ff8d42c",
+      "bytes": 2303
+    },
+    "schemas/HybridWorldRecipes.schema.json": {
+      "sha256": "8a481efc21fc57e1bbd604be7bc1b0ad8f41b39a2c1d3b146bf2e000e0cc1b3f",
+      "bytes": 19988
+    },
+    "service-worker.js": {
+      "sha256": "fb250a55f9afdad8ee6495e3faf4f9ed2e3ee3dff34d63795f9b53db344ca32c",
+      "bytes": 4486
+    }
+  }
+}

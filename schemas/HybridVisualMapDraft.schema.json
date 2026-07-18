@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridVisualMapDraft.schema.json",
+  "title": "Hybrid Visual Map Draft",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "mapId",
+    "baseHash",
+    "draftHash"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "format": {
+      "const": "HybridVisualMapDraft"
+    },
+    "version": {
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "mapId": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "name": {
+      "type": "string"
+    },
+    "baseHash": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    },
+    "draftHash": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    },
+    "baseMap": {
+      "type": "object"
+    },
+    "savedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lockedCells": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^\\d+,\\d+$"
+      },
+      "uniqueItems": true
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5
+      },
+      "uniqueItems": true
+    },
+    "map": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "data",
+        "events"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tilesetId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "changes": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "index",
+              "before",
+              "after"
+            ],
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "before": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "after": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "tilesetId": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "enum": [
+              1,
+              2
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "map"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": 3
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "width",
+          "height",
+          "tilesetId",
+          "changes",
+          "savedAt"
+        ],
+        "properties": {
+          "changes": {
+            "required": [
+              "count",
+              "tiles"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

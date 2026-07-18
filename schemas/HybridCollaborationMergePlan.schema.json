@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridCollaborationMergePlan.schema.json",
+  "title": "Hybrid Tile Studio Collaboration Merge Plan",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "createdAt",
+    "strategy",
+    "comparison"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridCollaborationMergePlan"
+    },
+    "version": {
+      "const": 1
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "strategy": {
+      "enum": [
+        "manual",
+        "ours",
+        "theirs",
+        "selective"
+      ]
+    },
+    "applySupported": {
+      "type": "boolean"
+    },
+    "comparison": {
+      "type": "object"
+    },
+    "selections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

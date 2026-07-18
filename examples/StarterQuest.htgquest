@@ -1,0 +1,30 @@
+{
+  "id": "welcome-to-town",
+  "format": "HybridQuestProject",
+  "version": 2,
+  "studioVersion": "18.1.0",
+  "name": "Welcome to Town",
+  "nodes": [
+    { "id": "start", "type": "start", "title": "Meet the mayor" },
+    { "id": "choose", "type": "choice", "title": "Choose how to help" },
+    { "id": "supplies", "type": "objective", "title": "Gather supplies" },
+    { "id": "scout", "type": "objective", "title": "Scout the old road" },
+    { "id": "reward", "type": "reward", "title": "Receive the town crest" },
+    { "id": "complete", "type": "complete", "title": "A new beginning" }
+  ],
+  "edges": [
+    { "from": "start", "to": "choose" },
+    { "from": "choose", "to": "supplies", "choice": "Gather supplies" },
+    { "from": "choose", "to": "scout", "choice": "Scout the road" },
+    { "from": "supplies", "to": "reward" },
+    { "from": "scout", "to": "reward" },
+    { "from": "reward", "to": "complete" }
+  ],
+  "cues": [
+    { "id": "camera-mayor", "at": 0, "duration": 1, "track": "camera", "type": "focus", "target": "Mayor" },
+    { "id": "mayor-dialogue", "at": 1, "duration": 4, "track": "dialogue", "type": "message", "target": "Mayor" },
+    { "id": "quest-sound", "at": 5, "duration": 1, "track": "audio", "type": "se", "target": "Quest" }
+  ],
+  "valid": true,
+  "unreachable": []
+}

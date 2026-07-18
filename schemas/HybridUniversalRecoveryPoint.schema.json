@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridUniversalRecoveryPoint.schema.json",
+  "title": "Hybrid Tile Studio Universal Recovery Point",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "name",
+    "createdAt"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridUniversalRecoveryPoint"
+    },
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": [
+        "integer",
+        "string"
+      ]
+    },
+    "project": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "content"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content": {
+            "type": "string"
+          },
+          "checksum": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "workspace": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/HybridStudioExtension.schema.json",
+  "format": "HybridTileStudioExtension",
+  "id": "example.worldsmith-map-audit",
+  "name": "Worldsmith Map Audit Example",
+  "version": "1.0.0",
+  "description": "Least-privilege v16 example contributing a read-only map validator and production panel.",
+  "publisher": "local-example",
+  "publisherFingerprint": "LOCAL-EXAMPLE-V16",
+  "permissions": ["map:read", "project:validate", "ui:contribute"],
+  "capabilityPolicy": {
+    "reviewed": true,
+    "enabled": true,
+    "capabilities": ["map:read", "project:validate"],
+    "isolation": "worker",
+    "timeBudgetMs": 16,
+    "payloadBudgetKb": 1024
+  },
+  "sandbox": {
+    "isolation": "worker",
+    "timeBudgetMs": 16,
+    "memoryBudgetKb": 1024,
+    "payloadBudgetKb": 1024,
+    "network": false,
+    "fileRead": ["data/Map*.json", "data/MapInfos.json", "data/Tilesets.json"],
+    "fileWrite": []
+  },
+  "contributes": {
+    "brushes": [],
+    "generators": [],
+    "validators": [{ "id": "example.worldsmith-map-audit.structure", "name": "Map Structure Audit" }],
+    "recipeNodes": [],
+    "panels": [{ "id": "example.worldsmith-map-audit.production", "title": "Map Audit" }]
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "name": "hybrid-tile-studio",
+  "version": "18.1.0",
+  "description": "Worldsmith creator suite for visual RPG Maker MZ maps, recipe graphs, quests, playtest automation, reusable content, collaboration, extensions, recovery, and reproducible releases",
+  "main": "electron-main.js",
+  "author": "DocDamage",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build-release.js",
+    "check:generated": "node scripts/build-release.js --check",
+    "sync:source": "node scripts/sync-source-from-root.js",
+    "start": "electron .",
+    "setup:test": "playwright install chromium",
+    "pretest": "npm run build && npm run check:generated",
+    "test": "npm run test:plugin && npm run test:studio && npm run test:v18-services && npm run test:v18-foundations && npm run test:migrations && npm run test:security && npm run test:worker && npm run test:cli",
+    "test:plugin": "node tests/integration/test_hybrid_tile_graft.js",
+    "test:studio": "node tests/integration/test_hybrid_tile_studio.mjs",
+    "test:v18-services": "node tests/integration/test_hybrid_tile_services_v18.js",
+    "test:v18-foundations": "node tests/integration/test_hybrid_tile_foundations_v18.js",
+    "test:migrations": "node tests/integration/test_hybrid_tile_migration_recovery_v18.mjs",
+    "test:security": "node tests/integration/test_electron_security_v18.js",
+    "test:worker": "node tests/integration/test_hybrid_tile_worker.js",
+    "test:cli": "node HybridTileStudioCLI.js --self-test && node tests/integration/test_hybrid_tile_cli.js",
+    "test:e2e": "playwright test",
+    "test:e2e:file": "node scripts/run-playwright-file.js",
+    "test:all": "npm test && npm run test:e2e",
+    "verify": "npm test && npm run test:e2e && npm run test:e2e:file",
+    "verify:release": "npm run verify && npm run dist:dir",
+    "dist": "electron-builder --publish never",
+    "dist:dir": "electron-builder --dir --publish never",
+    "dist:signed": "electron-builder --publish never --config.forceCodeSigning=true"
+  },
+  "window": {
+    "title": "Hybrid Tile Studio",
+    "width": 1600,
+    "height": 960,
+    "min_width": 960,
+    "min_height": 640,
+    "icon": "HybridTileStudio.png"
+  },
+  "chromium-args": "--enable-features=FileSystemAccessAPI",
+  "dependencies": {
+    "electron-updater": "^6.8.9"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "electron": "^43.1.1",
+    "electron-builder": "^26.15.3",
+    "happy-dom": "^20.10.6"
+  },
+  "build": {
+    "appId": "studio.hybridtile.app",
+    "productName": "Hybrid Tile Studio",
+    "asar": true,
+    "electronUpdaterCompatibility": ">=2.16",
+    "files": [
+      "HybridTileGraft.js",
+      "HybridTileStudio.*",
+      "HybridTileStudioV9.js",
+      "HybridTileStudioV10.js",
+      "HybridTileStudioV10.css",
+      "HybridTileStudioV11.js",
+      "HybridTileStudioV11.css",
+      "HybridTileStudioV12.js",
+      "HybridTileStudioV12.css",
+      "HybridTileStudioV13.js",
+      "HybridTileStudioV13.css",
+      "HybridTileStudioV14.js",
+      "HybridTileStudioV14.css",
+      "HybridTileStudioV15.js",
+      "HybridTileStudioV15.css",
+      "HybridTileStudioV16.js",
+      "HybridTileStudioV16.css",
+      "HybridTileStudioV18.js",
+      "HybridTileStudioV18.css",
+      "HybridTileStudioServicesV18.js",
+      "HybridTileCryptoV18.js",
+      "HybridTileStorageV18.js",
+      "HybridTileSchemasV18.js",
+      "HybridTileSchemaV18.js",
+      "HybridTilePwaV18.js",
+      "asset-manifest.json",
+      "HybridTileStudioCLI.js",
+      "HybridTileGuide.png",
+      "HybridTileWorker.js",
+      "electron-main.js",
+      "electron-preload.js",
+      "service-worker.js",
+      "manifest.webmanifest",
+      "extensions/**/*",
+      "examples/**/*",
+      "schemas/**/*",
+      "README.md",
+      "WORLD_RECIPES.md",
+      "FEATURE_MATRIX.md",
+      "CHANGELOG.md",
+      "BUILD_DESKTOP.md",
+      "EXTENSION_SDK.md",
+      "PLAYTEST_CHECKLIST.md",
+      "LIVE_PRODUCTION.md",
+      "RELEASE_ENGINEERING.md",
+      "RELEASE_READINESS.md",
+      "CREATOR_CONSOLE.md",
+      "WORLDSMITH.md",
+      "V17_FIRST_PARTY_POLISH.md",
+      "V18_FIRST_PARTY_RELEASE.md",
+      "TEST_REPORT.md",
+      "IMPLEMENTATION_REPORT.md",
+      "V18_1_STABILITY_AND_SCALE.md",
+      "AUTOMATED_TESTING.md",
+      "COMPATIBILITY_PROFILES.md",
+      "LICENSE"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "htgworkspace",
+        "name": "Hybrid Tile Studio Workspace",
+        "description": "Hybrid Tile Studio workspace catalog",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgprefab",
+        "name": "Hybrid Tile Studio Prefabs",
+        "description": "Hybrid Tile Studio prefab catalog",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgchangeset",
+        "name": "Hybrid Tile Studio Change Set",
+        "description": "Hybrid Tile Studio change set",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgrecipes",
+        "name": "Hybrid Tile Studio World Recipes",
+        "description": "Hybrid Tile Studio World Recipe catalog",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgworld",
+        "name": "Hybrid Tile Studio World Pack",
+        "description": "Reusable Hybrid Tile Studio world content pack",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgcatalog",
+        "name": "Hybrid Tile Studio Content Catalog",
+        "description": "Searchable Hybrid Tile Studio content catalog",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgextension",
+        "name": "Hybrid Tile Studio Extension",
+        "description": "Permissioned Hybrid Tile Studio extension manifest",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgrecording",
+        "name": "Hybrid Tile Studio Playtest Recording",
+        "description": "Recorded Live Production playtest",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgscenario",
+        "name": "Hybrid Tile Studio Scenario",
+        "description": "Repeatable playtest scenario",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgreview",
+        "name": "Hybrid Tile Studio Review Bundle",
+        "description": "Portable collaboration and review bundle",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgrelease",
+        "name": "Hybrid Tile Studio Production Bundle",
+        "description": "Clean reproducible production handoff",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgfingerprint",
+        "name": "Hybrid Tile Studio Release Fingerprint",
+        "description": "Canonical release fingerprint",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgjourney",
+        "name": "Hybrid Tile Studio Player Journey",
+        "description": "Recorded or authored player journey",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgtestmanifest",
+        "name": "Hybrid Tile Studio Test Manifest",
+        "description": "Headless production test manifest",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgcompat",
+        "name": "Hybrid Tile Studio Compatibility Profile",
+        "description": "Public API compatibility profile",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgmerge",
+        "name": "Hybrid Tile Studio Merge Plan",
+        "description": "Selective collaboration merge plan",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgmanifest",
+        "name": "Hybrid Tile Studio Release Manifest",
+        "description": "Release targets and signing manifest",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgrecovery",
+        "name": "Hybrid Tile Studio Recovery Point",
+        "description": "Universal project recovery point",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgmapdraft",
+        "name": "Worldsmith Visual Map Draft",
+        "description": "Reversible visual map working copy",
+        "role": "Editor"
+      },
+      {
+        "ext": "htggraph",
+        "name": "Worldsmith Recipe Graph",
+        "description": "Node-based world generation graph",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgquest",
+        "name": "Worldsmith Quest Project",
+        "description": "Quest and cutscene authoring project",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgcontent",
+        "name": "Worldsmith Content Library",
+        "description": "Reusable creator content collection",
+        "role": "Editor"
+      },
+      {
+        "ext": "htgbug",
+        "name": "Worldsmith Bug Report",
+        "description": "Reproducible playtest issue bundle",
+        "role": "Editor"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable",
+        "zip"
+      ],
+      "icon": "HybridTileStudio.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ],
+      "icon": "HybridTileStudio.png",
+      "category": "Development"
+    }
+  }
+}

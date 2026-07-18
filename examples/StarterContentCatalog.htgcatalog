@@ -1,0 +1,82 @@
+{
+  "format": "HybridContentCatalog",
+  "version": 1,
+  "id": "starter.world-library",
+  "name": "Starter World Library",
+  "visibility": "private",
+  "items": [
+    {
+      "id": "starter.market-day",
+      "name": "Market Day",
+      "type": "world-pack",
+      "version": "1.0.0",
+      "description": "A merchant with a daily routine and a recipe that opens the market.",
+      "tags": ["npc", "schedule", "town"],
+      "pack": {
+        "format": "HybridWorldPack",
+        "id": "starter.market-day",
+        "name": "Market Day",
+        "version": "1.0.0",
+        "schemaVersion": 3,
+        "capabilities": ["recipes", "npc-lives", "npc-travel", "world-state"],
+        "recipes": [
+          {
+            "id": "starter.market-open",
+            "name": "Open Morning Market",
+            "enabled": true,
+            "triggers": [{ "type": "timeChange" }],
+            "conditions": { "all": [{ "type": "time", "unit": "hour", "operator": "===", "value": 8 }] },
+            "actions": [{ "type": "setState", "key": "market.open", "value": true }]
+          }
+        ],
+        "npcs": [
+          {
+            "id": "starter.merchant-ada",
+            "name": "Ada",
+            "job": { "name": "Merchant" },
+            "schedule": [{ "id": "ada-market", "activity": "Selling at market", "start": 480, "end": 960, "mapId": 1, "x": 8, "y": 8 }]
+          }
+        ],
+        "npcRoutes": [
+          { "id": "starter.ada-market-route", "npcId": "starter.merchant-ada", "name": "Ada Walks to Market", "minutes": 15, "points": [{ "id": "home", "mapId": 1, "x": 3, "y": 6 }, { "id": "market", "mapId": 1, "x": 8, "y": 8 }] }
+        ]
+      }
+    },
+    {
+      "id": "starter.four-seasons",
+      "name": "Four Seasons Composer",
+      "type": "biome-graph",
+      "version": "1.0.0",
+      "description": "A deterministic climate, river, and road graph.",
+      "tags": ["biome", "river", "road"],
+      "graph": {
+        "id": "starter.four-seasons",
+        "name": "Four Seasons",
+        "seed": "four-seasons",
+        "nodes": [
+          { "id": "climate", "type": "climate", "options": { "tileA": 2048, "tileB": 2816, "layer": 0 } },
+          { "id": "river", "type": "river", "after": ["climate"], "options": { "tileA": 2048, "layer": 0 } },
+          { "id": "road", "type": "road", "after": ["river"], "options": { "tileA": 2816, "layer": 0 } }
+        ]
+      }
+    },
+    {
+      "id": "starter.encounter-paint",
+      "name": "Encounter Rule Paint",
+      "type": "rule-layer",
+      "version": "1.0.0",
+      "description": "A reusable layer for painting encounter behavior onto map cells.",
+      "tags": ["rules", "encounter"],
+      "layer": {
+        "id": "starter.encounter-areas",
+        "name": "Encounter Areas",
+        "mapId": 1,
+        "kind": "encounter",
+        "visible": true,
+        "opacity": 0.65,
+        "cells": {},
+        "rules": { "actions": [{ "type": "setState", "key": "encounter.active", "value": true }] }
+      }
+    }
+  ]
+}

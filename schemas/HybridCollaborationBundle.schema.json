@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridCollaborationBundle.schema.json",
+  "title": "Hybrid Tile Studio Collaboration Bundle",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "name",
+    "createdAt",
+    "branch",
+    "fingerprint"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridCollaborationBundle"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "mapIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "uniqueItems": true
+    },
+    "maps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reviewThreads": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reviewComments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "maxItems": 10000
+    },
+    "atlas": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "questGraph": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "packLock": {
+      "type": "object"
+    },
+    "deployment": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 100000
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    }
+  },
+  "additionalProperties": true
+}

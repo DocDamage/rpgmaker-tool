@@ -1,0 +1,124 @@
+{
+  "format": "HybridWorldRecipes",
+  "version": 6,
+  "studioVersion": "14.0.0",
+  "world": {
+    "clock": { "enabled": true, "day": 1, "hour": 8, "minuteOfHour": 0, "framesPerMinute": 60, "daysPerSeason": 30, "seasons": ["spring", "summer", "autumn", "winter"] },
+    "stateDefaults": { "festival.active": false },
+    "zones": [
+      { "id": "forest.glade", "name": "Forest Glade", "mapIds": [1], "rect": { "x": 8, "y": 6, "width": 10, "height": 8 }, "tags": ["outdoors", "forest"] }
+    ],
+    "entities": [
+      { "id": "river-town", "name": "River Town", "type": "settlement", "state": "normal", "tags": ["friendly"], "properties": { "prosperity": 2 } }
+    ],
+    "resources": [
+      { "id": "forest.herbs", "name": "Forest Herbs", "quantity": 3, "capacity": 3, "respawnMinutes": 1440, "tags": ["herb", "renewable"] }
+    ],
+    "variants": [
+      { "id": "river-town.winter", "name": "River Town — Winter", "mapId": 1, "recipeId": "winter-town", "enabled": true }
+    ],
+    "npcs": [
+      { "id": "ada-merchant", "name": "Ada", "home": { "entityId": "river-town" }, "job": { "name": "Merchant" }, "mapId": 1, "tags": ["merchant", "resident"], "schedule": [
+        { "id": "ada-market", "activity": "Working at the market", "start": 480, "end": 960, "mapId": 1, "x": 12, "y": 9, "days": [1, 2, 3, 4, 5] },
+        { "id": "ada-home", "activity": "At home", "start": 1020, "end": 420, "mapId": 1, "x": 5, "y": 4 }
+      ] }
+    ],
+    "npcRoutes": [
+      { "id": "ada-market-route", "npcId": "ada-merchant", "name": "Ada Walks to Market", "minutes": 20, "points": [
+        { "id": "home", "mapId": 1, "x": 5, "y": 4 },
+        { "id": "bridge", "mapId": 1, "x": 8, "y": 7 },
+        { "id": "market", "mapId": 1, "x": 12, "y": 9 }
+      ] }
+    ],
+    "ruleLayers": [
+      { "id": "forest.encounters", "name": "Forest Encounters", "mapId": 1, "kind": "encounter", "visible": true, "opacity": 0.65, "cells": { "9,7": "forest", "10,7": "forest", "9,8": "forest", "10,8": "forest" }, "rules": { "actions": [{ "type": "setState", "key": "encounter.biome", "value": "forest" }] } }
+    ],
+    "ruleBrushes": [
+      { "id": "soft-forest", "name": "Soft Forest Encounters", "shape": "circle", "size": 7, "hardness": 0.6, "falloff": "smooth", "mode": "paint", "value": "forest" }
+    ],
+    "biomeGraphs": [
+      { "id": "forest-world", "name": "Forest World", "seed": "forest-world", "nodes": [
+        { "id": "climate", "type": "climate", "options": { "tileA": 2048, "tileB": 2816, "layer": 0 } },
+        { "id": "river", "type": "river", "after": ["climate"], "options": { "tileA": 2048, "layer": 0 } },
+        { "id": "road", "type": "road", "after": ["river"], "options": { "tileA": 2816, "layer": 0 } }
+      ] }
+    ],
+    "biomeLocks": [
+      { "graphId": "forest-world", "mapId": 1, "cells": { "12,9": { "x": 12, "y": 9, "reason": "Hand-authored market entrance", "stages": [] } } }
+    ],
+    "runtimeBudget": { "frameBudgetMs": 8, "recipeRunsPerFrame": 8, "simulationStepsPerFrame": 60, "spatialCellSize": 16 },
+    "tests": [
+      { "id": "festival-starts", "name": "Festival starts", "recipeId": "festival-start", "context": { "mapId": 1 }, "initial": { "facts": {} }, "expect": [] }
+    ]
+  },
+  "recipes": [
+    {
+      "id": "forest-weather",
+      "name": "Forest Weather",
+      "description": "Start rain and enable a switch while entering Region 5.",
+      "enabled": false,
+      "priority": 10,
+      "tags": ["forest", "weather"],
+      "triggers": [{ "type": "playerStep" }, { "type": "mapEnter" }],
+      "conditions": { "all": [{ "type": "region", "ids": [5] }] },
+      "actions": [
+        { "type": "setSwitch", "id": 12, "value": true },
+        { "type": "weather", "weather": "rain", "power": 5, "duration": 60 }
+      ],
+      "cooldownFrames": 60
+    },
+    {
+      "id": "repair-bridge",
+      "name": "Repair Bridge",
+      "description": "Place the repaired prefab once persistent state says the bridge is repaired.",
+      "enabled": false,
+      "priority": 20,
+      "tags": ["bridge", "persistent", "prefab"],
+      "triggers": [{ "type": "stateChange", "key": "bridge.repaired" }, { "type": "mapEnter" }],
+      "conditions": {
+        "all": [
+          { "type": "map", "ids": [1] },
+          { "type": "state", "key": "bridge.repaired", "value": true }
+        ]
+      },
+      "actions": [
+        { "type": "graftPrefab", "name": "Repaired Bridge", "x": 10, "y": 8, "save": true },
+        { "type": "setState", "key": "bridge.placed", "value": true }
+      ],
+      "once": true
+    },
+    {
+      "id": "winter-town",
+      "name": "Winter Town",
+      "description": "Remember that River Town has entered its winter form.",
+      "enabled": false,
+      "tags": ["season", "variant"],
+      "triggers": [{ "type": "seasonChange" }],
+      "conditions": { "all": [{ "type": "season", "seasons": ["winter"] }] },
+      "actions": [
+        { "type": "updateEntity", "id": "river-town", "state": "winter" },
+        { "type": "addFact", "name": "river-town.winter", "value": true }
+      ]
+    },
+    {
+      "id": "ada-starts-work",
+      "name": "Ada Starts Work",
+      "description": "Open the merchant service when Ada begins her market routine.",
+      "enabled": false,
+      "tags": ["npc", "schedule", "market"],
+      "triggers": [{ "type": "npcActivityChange", "npcId": "ada-merchant" }],
+      "conditions": { "all": [{ "type": "npc", "id": "ada-merchant", "activity": "Working at the market" }] },
+      "actions": [{ "type": "setState", "key": "market.open", "value": true }]
+    },
+    {
+      "id": "festival-start",
+      "name": "Festival Start",
+      "description": "Named custom trigger routed to Common Event 9.",
+      "enabled": false,
+      "tags": ["custom-trigger", "common-event"],
+      "triggers": [{ "type": "festivalStarted" }],
+      "conditions": { "all": [] },
+      "actions": [{ "type": "commonEvent", "id": 9 }]
+    }
+  ]
+}

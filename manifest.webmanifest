@@ -1,0 +1,12 @@
+{
+  "name": "Hybrid Tile Studio",
+  "short_name": "Tile Studio",
+  "description": "Worldsmith creator suite for reversible RPG Maker MZ maps, deterministic recipes, connected quests, honest playtest evidence, reusable content, and reproducible release records",
+  "start_url": "./HybridTileStudio.html",
+  "display": "standalone",
+  "scope": "./",
+  "launch_handler": { "client_mode": "focus-existing" },
+  "background_color": "#f4f8fa",
+  "theme_color": "#37b8d2",
+  "icons": [{ "src": "HybridTileStudio.png", "sizes": "256x256", "type": "image/png", "purpose": "any maskable" }]
+}

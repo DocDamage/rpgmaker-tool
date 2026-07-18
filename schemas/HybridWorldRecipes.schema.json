@@ -1,0 +1,960 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridWorldRecipes.schema.json",
+  "title": "HybridTileGraft World Recipe Catalog",
+  "type": "object",
+  "required": [
+    "format",
+    "recipes"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridWorldRecipes"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "recipes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recipe"
+      }
+    },
+    "world": {
+      "$ref": "#/$defs/world"
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/packManifest"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "recipe": {
+      "type": "object",
+      "required": [
+        "id",
+        "triggers",
+        "conditions",
+        "actions"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50
+        },
+        "triggers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/trigger"
+          }
+        },
+        "conditions": {
+          "$ref": "#/$defs/condition"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "maxItems": 500
+        },
+        "once": {
+          "type": "boolean"
+        },
+        "maxRuns": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cooldownFrames": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "errorPolicy": {
+          "enum": [
+            "stop",
+            "continue"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "trigger": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "everyFrames": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "id": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "key": {
+              "type": "string"
+            },
+            "operation": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "condition": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "any"
+          ],
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "not"
+          ],
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/condition"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "action": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "world": {
+      "type": "object",
+      "properties": {
+        "clock": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "day": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "hour": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 23
+            },
+            "minuteOfHour": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 59
+            },
+            "framesPerMinute": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "daysPerSeason": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "seasons": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "stateDefaults": {
+          "type": "object"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/entity"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          }
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/variant"
+          }
+        },
+        "npcs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/npc"
+          }
+        },
+        "npcRoutes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/npcRoute"
+          }
+        },
+        "ruleLayers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ruleLayer"
+          }
+        },
+        "ruleBrushes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ruleBrush"
+          }
+        },
+        "biomeGraphs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/biomeGraph"
+          }
+        },
+        "biomeLocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/biomeLock"
+          }
+        },
+        "schedules": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "runtimeBudget": {
+          "$ref": "#/$defs/runtimeBudget"
+        },
+        "tests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scenario"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "zone": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mapIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
+          }
+        },
+        "rect": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "x": {
+              "type": "integer"
+            },
+            "y": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ]
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "properties": {
+              "x": {
+                "type": "integer"
+              },
+              "y": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "entity": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "state": {},
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "resource": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "capacity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "respawnMinutes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "variant": {
+      "type": "object",
+      "required": [
+        "id",
+        "mapId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recipeId": {
+          "type": "string"
+        },
+        "changeSetId": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "npc": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "home": {
+          "type": "object"
+        },
+        "job": {
+          "type": "object"
+        },
+        "relationships": {
+          "type": "object"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schedule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/npcActivity"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "npcActivity": {
+      "type": "object",
+      "required": [
+        "activity",
+        "start",
+        "end"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "activity": {
+          "type": "string"
+        },
+        "start": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1439
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9]{1,2}:[0-9]{2}$"
+            }
+          ]
+        },
+        "end": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1439
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9]{1,2}:[0-9]{2}$"
+            }
+          ]
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "seasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "npcRoute": {
+      "type": "object",
+      "required": [
+        "id",
+        "npcId",
+        "points"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "npcId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/routePoint"
+          }
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "routePoint": {
+      "type": "object",
+      "required": [
+        "mapId",
+        "x",
+        "y"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "waitMinutes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ruleLayer": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "kind": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cells": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^-?[0-9]+,-?[0-9]+$"
+          }
+        },
+        "rules": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ruleBrush": {
+      "type": "object",
+      "required": [
+        "id",
+        "shape"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shape": {
+          "enum": [
+            "circle",
+            "rectangle",
+            "square",
+            "line"
+          ]
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "hardness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "falloff": {
+          "enum": [
+            "linear",
+            "smooth",
+            "quadratic"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "paint",
+            "erase",
+            "toggle"
+          ]
+        },
+        "value": {}
+      },
+      "additionalProperties": true
+    },
+    "biomeGraph": {
+      "type": "object",
+      "required": [
+        "id",
+        "nodes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "seed": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "type"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "after": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "options": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "biomeLock": {
+      "type": "object",
+      "required": [
+        "graphId",
+        "mapId",
+        "cells"
+      ],
+      "properties": {
+        "graphId": {
+          "type": "string"
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cells": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^-?[0-9]+,-?[0-9]+$"
+          }
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "runtimeBudget": {
+      "type": "object",
+      "properties": {
+        "frameBudgetMs": {
+          "type": "number",
+          "minimum": 1
+        },
+        "recipeRunsPerFrame": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "simulationStepsPerFrame": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "spatialCellSize": {
+          "type": "integer",
+          "minimum": 4
+        }
+      },
+      "additionalProperties": true
+    },
+    "scenario": {
+      "type": "object",
+      "required": [
+        "id",
+        "recipeId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "recipeId": {
+          "type": "string"
+        },
+        "context": {
+          "type": "object"
+        },
+        "initial": {
+          "type": "object"
+        },
+        "expect": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "packManifest": {
+      "type": "object",
+      "required": [
+        "id",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contents": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

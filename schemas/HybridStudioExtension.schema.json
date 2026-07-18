@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridStudioExtension.schema.json",
+  "title": "Hybrid Tile Studio Extension Manifest",
+  "type": "object",
+  "required": [
+    "format",
+    "id",
+    "name",
+    "version",
+    "permissions"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridTileStudioExtension"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([+-][A-Za-z0-9.-]+)?$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "publisherFingerprint": {
+      "type": "string"
+    },
+    "entry": {
+      "type": "string"
+    },
+    "permissions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "map:read",
+          "map:write",
+          "world:read",
+          "world:write",
+          "project:read",
+          "project:write",
+          "project:validate",
+          "recipes:read",
+          "recipes:write",
+          "pack:manage",
+          "ui:contribute",
+          "network",
+          "process",
+          "clipboard"
+        ]
+      }
+    },
+    "sandbox": {
+      "type": "object",
+      "properties": {
+        "isolation": {
+          "enum": [
+            "worker",
+            "process",
+            "trusted"
+          ]
+        },
+        "timeBudgetMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "memoryBudgetKb": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 10240
+        },
+        "payloadBudgetKb": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 10240
+        },
+        "network": {
+          "type": "boolean"
+        },
+        "fileRead": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fileWrite": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "capabilityPolicy": {
+      "type": "object",
+      "properties": {
+        "reviewed": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "isolation": {
+          "enum": [
+            "worker",
+            "process",
+            "trusted"
+          ]
+        },
+        "timeBudgetMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "payloadBudgetKb": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 10240
+        }
+      },
+      "additionalProperties": false
+    },
+    "contributes": {
+      "type": "object",
+      "properties": {
+        "brushes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "generators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "validators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "recipeNodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "panels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

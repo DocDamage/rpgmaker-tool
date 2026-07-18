@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; worker-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hybrid Tile Studio</title>
+  <link rel="icon" href="HybridTileStudio.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="HybridTileStudio.css">
+  <link rel="stylesheet" href="HybridTileStudioV18.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">HT</span><span><strong>Hybrid Tile Studio</strong><small>RPG Maker MZ map workspace</small></span></div>
+    <nav class="toolbar" aria-label="Project actions">
+      <button id="openProjectButton" class="primary">Open project</button>
+      <button id="openMapFilesButton">Open map files</button>
+      <button id="saveButton" disabled>Save</button>
+      <button id="saveAllButton" disabled>Save all</button>
+      <span class="separator"></span>
+      <button id="undoButton" disabled title="Ctrl+Z">Undo</button>
+      <button id="redoButton" disabled title="Ctrl+Y">Redo</button>
+      <button id="validateButton" disabled>Validate</button>
+      <button id="workspaceButton" disabled>Workspace</button>
+      <label class="toggle"><input id="autosaveToggle" type="checkbox"><span>Autosave</span></label>
+    </nav>
+    <div id="projectBadge" class="project-badge">No project open</div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar left-sidebar">
+      <div class="panel-header"><strong>Project maps</strong><button id="refreshMapsButton" class="icon-button" disabled title="Refresh">↻</button></div>
+      <div class="search-row"><input id="mapSearch" type="search" placeholder="Search maps…"></div>
+      <div id="mapTree" class="map-tree empty-state">Open an RPG Maker project directory or select MapXXX.json files.</div>
+      <div class="sidebar-section">
+        <div class="panel-header"><strong>Bookmarks</strong><button id="addBookmarkButton" class="icon-button" disabled>＋</button></div>
+        <div id="bookmarkList" class="compact-list empty-state">No bookmarks</div>
+      </div>
+      <div class="sidebar-section grow">
+        <div class="panel-header"><strong>Project search</strong></div>
+        <div class="form-stack padded">
+          <input id="projectSearchInput" type="search" placeholder="Event text or tile ID">
+          <div class="button-row"><button id="projectSearchButton" disabled>Search all maps</button><button id="replaceTilesButton" disabled>Replace tiles</button></div>
+        </div>
+        <div id="projectSearchResults" class="compact-list"></div>
+      </div>
+    </aside>
+
+    <section class="editor-area">
+      <div id="tabBar" class="tabbar"><div class="empty-tab">No maps open</div></div>
+      <div class="canvas-toolbar">
+        <div class="tool-group" id="toolButtons">
+          <button data-tool="select" class="active" title="Selection (S)">Select</button>
+          <button data-tool="lasso" title="Lasso selection (L)">Lasso</button>
+          <button data-tool="polygon" title="Polygon selection (O)">Polygon</button>
+          <button data-tool="wand" title="Magic wand (W)">Wand</button>
+          <button data-tool="regionSelect" title="Select matching region (Q)">Region</button>
+          <button data-tool="paint" title="Paint (P)">Paint</button>
+          <button data-tool="erase" title="Erase (E)">Erase</button>
+          <button data-tool="rectangle" title="Rectangle (R)">Rectangle</button>
+          <button data-tool="line" title="Line brush (N)">Line</button>
+          <button data-tool="ellipse" title="Ellipse brush (C)">Ellipse</button>
+          <button data-tool="scatterBrush" title="Scatter brush (G)">Scatter</button>
+          <button data-tool="fill" title="Flood fill (F)">Fill</button>
+          <button data-tool="eyedropper" title="Eyedropper (I)">Pick</button>
+          <button data-tool="event" title="Event select (V)">Event</button>
+          <button data-tool="pan" title="Pan (Space)">Pan</button>
+        </div>
+        <span class="separator"></span>
+        <button id="copySelectionButton" disabled>Copy</button><button id="pasteSelectionButton" disabled>Paste</button><button id="rotateClipboardButton" disabled>Rotate</button><button id="mirrorClipboardButton" disabled>Mirror</button>
+        <span class="separator"></span>
+        <label>Layer <select id="tileLayerSelect"><option value="0">L1</option><option value="1">L2</option><option value="2">L3</option><option value="3">L4</option><option value="4">L5 Shadow</option><option value="5">L6 Region</option></select></label>
+        <label>Tile <input id="tileIdInput" type="text" inputmode="numeric" value="0"></label>
+        <label>Brush <input id="brushSizeInput" type="number" min="1" max="16" value="1"></label>
+        <button id="gridButton" class="active">Grid</button>
+        <select id="overlaySelect" title="Canvas overlay"><option value="none">No overlay</option><option value="region">Regions</option><option value="shadow">Shadows</option><option value="changes">Changes</option><option value="collision">Collision</option></select>
+        <span class="zoom-controls"><button id="zoomOutButton">−</button><output id="zoomOutput">100%</output><button id="zoomInButton">＋</button><button id="fitButton">Fit</button></span>
+      </div>
+      <div id="canvasStage" class="canvas-stage">
+        <canvas id="mapCanvas" width="1280" height="720" tabindex="0"></canvas>
+        <div id="canvasEmpty" class="canvas-empty"><strong>Hybrid Tile Studio</strong><span>Open a project or map file to begin.</span></div>
+        <div id="minimapFrame" class="minimap-frame hidden"><canvas id="minimapCanvas" width="200" height="150"></canvas></div>
+        <div id="jobToast" class="job-toast hidden"><strong id="jobName">Working…</strong><progress id="jobProgress" max="1" value="0"></progress><button id="cancelJobButton">Cancel</button></div>
+      </div>
+      <footer class="statusbar"><span id="statusText">Ready</span><span id="cursorStatus">X:— Y:—</span><span id="mapStatus">—</span><span id="dirtyStatus"></span></footer>
+    </section>
+
+    <aside class="sidebar right-sidebar">
+      <div class="inspector-tabs" id="inspectorTabs">
+        <button data-panel="tilePanel" class="active">Tile</button>
+        <button data-panel="layersPanel">Layers</button>
+        <button data-panel="eventsPanel">Events</button>
+        <button data-panel="prefabsPanel">Prefabs</button>
+        <button data-panel="generatorsPanel">Generate</button>
+        <button data-panel="recipesPanel">Recipes</button>
+        <button data-panel="historyPanel">History</button>
+        <button data-panel="diffPanel">Diff</button>
+        <button data-panel="projectPanel">Project</button>
+      </div>
+
+      <section id="tilePanel" class="inspector-panel active">
+        <div class="panel-header"><strong>Tile palette</strong></div>
+        <div class="form-grid padded">
+          <label>Tileset sheet<select id="sheetSelect"><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="A5">A5</option><option value="A">Autotiles</option></select></label>
+          <label>Filter<input id="tileFilterInput" type="search" placeholder="ID or code"></label>
+        </div>
+        <div id="tilePalette" class="tile-palette"></div>
+        <div class="panel-header"><strong>Selection inspector</strong></div>
+        <div id="selectionInspector" class="property-list padded empty-state">Select a tile or area.</div>
+      </section>
+
+      <section id="layersPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Authoring layers</strong><button id="addLayerButton" class="icon-button" disabled>＋</button></div>
+        <div id="authoringLayerList" class="layer-list empty-state">Open a map to manage layers.</div>
+        <div class="button-grid padded"><button id="duplicateLayerButton" disabled>Duplicate</button><button id="mergeLayerButton" disabled>Merge down</button><button id="moveLayerUpButton" disabled>Move up</button><button id="moveLayerDownButton" disabled>Move down</button><button id="exportLayerButton" disabled>Export change set</button><button id="deleteLayerButton" class="danger" disabled>Delete</button></div>
+        <div class="panel-header"><strong>Tile-layer display</strong></div>
+        <div id="tileLayerControls" class="tile-layer-controls"></div>
+        <div class="panel-header"><strong>Masks</strong><button id="createMaskButton" class="icon-button" disabled>＋</button></div>
+        <div id="maskList" class="compact-list empty-state">No masks</div>
+      </section>
+
+      <section id="eventsPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Events</strong><button id="addEventButton" class="icon-button" disabled>＋</button></div>
+        <input id="eventSearchInput" class="panel-search" type="search" placeholder="Search events and commands…">
+        <div id="eventList" class="event-list empty-state">Open a map to inspect events.</div>
+        <form id="eventForm" class="form-stack padded hidden">
+          <input id="eventIdField" type="hidden">
+          <label>Name<input id="eventNameField" type="text"></label>
+          <div class="form-grid"><label>X<input id="eventXField" type="number" min="0"></label><label>Y<input id="eventYField" type="number" min="0"></label></div>
+          <label>Note<textarea id="eventNoteField" rows="2"></textarea></label>
+          <details open><summary>Visual page editor</summary>
+            <div class="form-stack nested-editor">
+              <div class="form-grid"><label>Page<select id="eventPageSelect"></select></label><label>Trigger<select id="eventTriggerField"><option value="0">Action button</option><option value="1">Player touch</option><option value="2">Event touch</option><option value="3">Autorun</option><option value="4">Parallel</option></select></label></div>
+              <div class="form-grid"><label>Priority<select id="eventPriorityField"><option value="0">Below characters</option><option value="1">Same as characters</option><option value="2">Above characters</option></select></label><label>Movement<select id="eventMoveTypeField"><option value="0">Fixed</option><option value="1">Random</option><option value="2">Approach</option><option value="3">Custom</option></select></label></div>
+              <label>Page conditions JSON<textarea id="eventConditionsField" rows="4" spellcheck="false"></textarea></label>
+              <div class="button-row"><button id="eventPageAddButton" type="button">Add page</button><button id="eventPageDuplicateButton" type="button">Duplicate</button><button id="eventPageDeleteButton" type="button" class="danger">Delete</button></div>
+              <label>Commands<select id="eventCommandList" size="8"></select></label>
+              <div class="form-grid"><label>Command<select id="eventCommandType"><option value="101">Show text</option><option value="102">Show choices</option><option value="111">Conditional branch</option><option value="117">Common event</option><option value="121">Control switches</option><option value="122">Control variables</option><option value="123">Control self switch</option><option value="125">Change gold</option><option value="126">Change items</option><option value="127">Change weapons</option><option value="128">Change armors</option><option value="129">Change party member</option><option value="201">Transfer player</option><option value="205">Set move route</option><option value="212">Show animation</option><option value="213">Show balloon icon</option><option value="230">Wait</option><option value="301">Battle processing</option><option value="355">Script</option><option value="357">Plugin command (MZ)</option></select></label><label>Indent<input id="eventCommandIndent" type="number" min="0" value="0"></label></div>
+              <label>Parameters JSON<textarea id="eventCommandParameters" rows="5" spellcheck="false">[]</textarea></label>
+              <div class="button-row"><button id="eventCommandAddButton" type="button">Add command</button><button id="eventCommandUpdateButton" type="button">Update</button><button id="eventCommandDeleteButton" type="button" class="danger">Delete</button><button id="eventTransferPickButton" type="button">Pick transfer destination</button></div>
+            </div>
+          </details>
+          <details><summary>Raw event JSON</summary><label>Event JSON<textarea id="eventJsonField" rows="12" spellcheck="false"></textarea></label></details>
+          <details open><summary>Command-specific editor</summary>
+            <div id="v9CommandFields" class="form-stack nested-editor"><div class="empty-state">Select a command.</div></div>
+            <div class="button-row padded"><button id="v9ApplyCommandButton" type="button">Apply structured fields</button><button id="v9ScanEventRefsButton" type="button">Find references</button></div>
+          </details>
+          <details><summary>Page conditions builder</summary><div id="v9ConditionFields" class="form-stack nested-editor"></div><div class="button-row padded"><button id="v9ApplyConditionsButton" type="button">Apply conditions</button></div></details>
+          <details><summary>Visual move route</summary><div id="v9MoveRouteList" class="compact-list empty-state">Select a Set Move Route command.</div><div class="form-grid padded"><label>Move command<select id="v9MoveCode"><option value="1">Move down</option><option value="2">Move left</option><option value="3">Move right</option><option value="4">Move up</option><option value="5">Move lower-left</option><option value="6">Move lower-right</option><option value="7">Move upper-left</option><option value="8">Move upper-right</option><option value="9">Move random</option><option value="10">Move toward player</option><option value="11">Move away from player</option><option value="12">Step forward</option><option value="13">Step backward</option><option value="15">Wait</option><option value="16">Turn down</option><option value="17">Turn left</option><option value="18">Turn right</option><option value="19">Turn up</option><option value="45">Script</option></select></label><label>Parameter<input id="v9MoveParameter" type="text"></label></div><div class="button-row padded"><button id="v9AddMoveCommandButton" type="button">Add</button><button id="v9MoveUpButton" type="button">Up</button><button id="v9MoveDownButton" type="button">Down</button><button id="v9DeleteMoveButton" type="button">Delete</button></div></details>
+          <details><summary>Event templates and refactors</summary><div class="form-stack nested-editor"><label>Template name<input id="v9EventTemplateName" type="text" placeholder="Reusable event"></label><div class="button-row"><button id="v9SaveEventTemplateButton" type="button">Save event</button><button id="v9SavePageTemplateButton" type="button">Save page</button><button id="v9ApplyEventTemplateButton" type="button">Apply selected</button></div><label>Templates<select id="v9EventTemplateList" size="5"></select></label><div class="button-row"><button id="v9ImportEventTemplatesButton" type="button">Import</button><button id="v9ExportEventTemplatesButton" type="button">Export</button><button id="v9DeleteEventTemplateButton" type="button" class="danger">Delete template</button></div><div id="v9EventReferenceReport" class="report empty-state">No reference scan yet.</div></div></details>
+          <div class="button-row"><button id="saveEventButton" type="submit" class="primary">Apply event</button><button id="duplicateEventButton" type="button">Duplicate</button><button id="deleteEventButton" type="button" class="danger">Delete</button></div>
+        </form>
+      </section>
+
+      <section id="prefabsPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Visual prefab studio</strong><button id="v9CapturePrefabButton" class="icon-button" disabled>＋</button></div>
+        <div class="form-stack padded"><input id="v9PrefabSearch" type="search" placeholder="Search prefabs, tags, categories…"><div class="form-grid"><label>Name<input id="v9PrefabName" type="text" value="New Prefab"></label><label>Category<input id="v9PrefabCategory" type="text" value="General"></label></div><label>Tags<input id="v9PrefabTags" type="text" placeholder="house, town"></label><label>Dependencies<input id="v9PrefabDependencies" type="text" placeholder="Door@1, Roof@2"></label><div class="form-grid"><label>Variant group<input id="v9PrefabVariantGroup" type="text"></label><label>Weight<input id="v9PrefabWeight" type="number" min="0.01" step="0.1" value="1"></label></div><label>Parameters JSON<textarea id="v9PrefabParameters" rows="4">[]</textarea></label><label>Placement rules JSON<textarea id="v9PrefabRules" rows="4">{}</textarea></label></div>
+        <div class="prefab-preview"><canvas id="v9PrefabPreview" width="320" height="160"></canvas></div>
+        <div id="v9PrefabList" class="compact-list empty-state">No captured prefabs.</div>
+        <div class="button-grid padded"><button id="v9PlacePrefabButton" disabled>Place at selection</button><button id="v9LinkPrefabButton" disabled>Place linked</button><button id="v9RefreshPrefabButton" disabled>Refresh linked</button><button id="v9DiagnosePrefabsButton">Dependency report</button><button id="v9ImportPrefabsButton">Import catalog</button><button id="v9ExportPrefabsButton">Export catalog</button><button id="v9DeletePrefabButton" class="danger" disabled>Delete</button></div>
+        <div id="v9PrefabReport" class="report padded empty-state">Select or capture a prefab.</div>
+      </section>
+
+      <section id="generatorsPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Non-destructive generator</strong></div>
+        <form id="generatorForm" class="form-stack padded">
+          <label>Generator<select id="generatorType"><option value="biome">Climate biome</option><option value="transitions">Biome transitions</option><option value="dungeon">Validated dungeon</option><option value="progressionDungeon">Progression dungeon</option><option value="road">Terrain-aware road</option><option value="river">Downhill river</option><option value="riverNetwork">River network</option><option value="scatter">Scatter</option><option value="wfc">Backtracking WFC</option><option value="graph">Generator graph</option></select></label>
+          <label>Seed<input id="generatorSeed" type="text" value="hybrid-seed"></label>
+          <div class="form-grid"><label>Primary tile<input id="generatorTileA" type="number" min="0" value="0"></label><label>Secondary tile<input id="generatorTileB" type="number" min="0" value="1"></label></div>
+          <div class="form-grid"><label>Count / rooms<input id="generatorCount" type="number" min="1" value="8"></label><label>Density<input id="generatorDensity" type="number" min="0" max="1" step="0.05" value="0.35"></label></div>
+          <label>Advanced options JSON<textarea id="generatorOptions" rows="8" spellcheck="false">{}</textarea></label>
+          <label class="toggle"><input id="generatorSelectionOnly" type="checkbox"><span>Limit to selection</span></label>
+          <div class="button-row"><button id="previewGeneratorButton" type="button">Preview</button><button id="applyGeneratorButton" type="submit" class="primary">Apply as modifier</button><button id="cancelPreviewButton" type="button">Clear preview</button></div>
+          <div class="button-row"><button id="learnWfcButton" type="button">Learn WFC from map</button><button id="exportRulesButton" type="button">Export rules</button></div>
+          <label>Generator graph JSON<textarea id="generatorGraphField" rows="7" spellcheck="false">{"nodes":[]}</textarea></label>
+          <details open><summary>Visual generator workbench</summary><div class="form-stack nested-editor"><div class="form-grid"><label>Node ID<input id="v9GraphNodeId" value="node-1"></label><label>Type<select id="v9GraphNodeType"><option value="biome">Biome</option><option value="transitions">Transitions</option><option value="progressionDungeon">Progression dungeon</option><option value="riverNetwork">River network</option><option value="wfc">WFC</option><option value="scatter">Scatter</option></select></label></div><label>Depends on<input id="v9GraphDepends" placeholder="node-0"></label><label>Options JSON<textarea id="v9GraphOptions" rows="4">{}</textarea></label><div class="button-row"><button id="v9AddGraphNode" type="button">Add/update node</button><button id="v9DeleteGraphNode" type="button">Delete node</button><button id="v9RunGraph" type="button">Run graph</button></div><svg id="v9GeneratorGraph" class="generator-graph" viewBox="0 0 320 180" role="img" aria-label="Generator dependency graph"></svg><div id="v9GeneratorDiagnostics" class="report empty-state">No generator diagnostics.</div></div></details>
+          <details><summary>Multi-layer WFC and constraints</summary><div class="form-stack nested-editor"><label>Layer configuration JSON<textarea id="v9MultiLayerWfc" rows="7">[{"layer":0,"rules":null}]</textarea></label><label>Constraint mask<select id="v9ConstraintMask"><option value="">None</option></select></label><div class="button-row"><button id="v9AnalyzeWfc" type="button">Analyze rules</button><button id="v9RunMultiWfc" type="button">Run multi-layer WFC</button></div><div id="v9WfcDiagnostics" class="report empty-state">No WFC analysis.</div></div></details>
+        </form>
+        <div class="panel-header"><strong>Modifier stack</strong></div>
+        <div id="modifierList" class="compact-list empty-state">No modifiers</div>
+      </section>
+
+      <section id="recipesPanel" class="inspector-panel">
+        <div class="panel-header"><strong>World Recipes</strong><button id="v9NewRecipeButton" class="icon-button" type="button">＋</button></div>
+        <div class="form-stack padded">
+          <input id="v9RecipeSearch" type="search" placeholder="Search recipes, triggers, tags…">
+          <div id="v9RecipeList" class="compact-list recipe-list empty-state">No World Recipes in this project.</div>
+          <div class="button-row"><button id="v9DuplicateRecipeButton" type="button" disabled>Duplicate</button><button id="v9DeleteRecipeButton" type="button" class="danger" disabled>Delete</button></div>
+        </div>
+        <form id="v9RecipeForm" class="form-stack padded hidden">
+          <div class="form-grid"><label>Name<input id="v9RecipeName" required></label><label>Stable ID<input id="v9RecipeId" required pattern="[A-Za-z0-9][A-Za-z0-9._:-]*"></label></div>
+          <label>Description<textarea id="v9RecipeDescription" rows="2"></textarea></label>
+          <div class="form-grid"><label>Priority<input id="v9RecipePriority" type="number" value="0"></label><label>Cooldown (frames)<input id="v9RecipeCooldown" type="number" min="0" value="0"></label></div>
+          <div class="form-grid"><label>Maximum runs (0=unlimited)<input id="v9RecipeMaxRuns" type="number" min="0" value="0"></label><label>Error policy<select id="v9RecipeErrorPolicy"><option value="stop">Stop on error</option><option value="continue">Continue and report</option></select></label></div>
+          <label>Tags<input id="v9RecipeTags" placeholder="winter, outdoors, settlement"></label>
+          <div class="button-row"><label class="toggle"><input id="v9RecipeEnabled" type="checkbox" checked><span>Enabled</span></label><label class="toggle"><input id="v9RecipeOnce" type="checkbox"><span>Run once</span></label></div>
+
+          <details open><summary>WHEN — triggers</summary><div class="form-stack nested-editor">
+            <div class="recipe-trigger-grid">
+              <label class="toggle"><input data-recipe-trigger="manual" type="checkbox" checked><span>Manual</span></label>
+              <label class="toggle"><input data-recipe-trigger="mapEnter" type="checkbox"><span>Map enter</span></label>
+              <label class="toggle"><input data-recipe-trigger="playerStep" type="checkbox"><span>Player step</span></label>
+              <label class="toggle"><input data-recipe-trigger="switchChange" type="checkbox"><span>Switch change</span></label>
+              <label class="toggle"><input data-recipe-trigger="variableChange" type="checkbox"><span>Variable change</span></label>
+              <label class="toggle"><input data-recipe-trigger="tileChange" type="checkbox"><span>Tile change</span></label>
+              <label class="toggle"><input data-recipe-trigger="stateChange" type="checkbox"><span>State change</span></label>
+              <label class="toggle"><input data-recipe-trigger="interval" type="checkbox"><span>Interval</span></label>
+            </div>
+            <div class="form-grid"><label>Interval frames<input id="v9RecipeInterval" type="number" min="1" value="60"></label><label>Custom trigger<input id="v9RecipeCustomTrigger" placeholder="festivalStarted"></label></div>
+            <label>Advanced trigger definitions JSON<textarea id="v9RecipeTriggersJson" rows="4">[]</textarea></label>
+          </div></details>
+
+          <details open><summary>IF — conditions</summary><div class="form-stack nested-editor">
+            <div class="form-grid"><label>Condition<select id="v9RecipeConditionType"><option value="switch">Switch</option><option value="variable">Variable</option><option value="state">World state</option><option value="map">Map</option><option value="region">Region</option><option value="terrain">Terrain tag</option><option value="tile">Tile</option><option value="position">Position</option><option value="direction">Direction</option><option value="gold">Party gold</option><option value="item">Item count</option><option value="chance">Random chance</option><option value="context">Trigger context</option><option value="recipeRuns">Recipe run count</option></select></label><label>Definition JSON<input id="v9RecipeConditionDefinition" value='{"id":1,"value":true}'></label></div>
+            <div class="button-row"><button id="v9AddAndCondition" type="button">Add AND</button><button id="v9AddOrCondition" type="button">Add OR group</button><button id="v9ClearConditions" type="button">Clear</button></div>
+            <div id="v9RecipeConditionList" class="recipe-block-list empty-state">No conditions: recipe always passes.</div>
+            <label>Complete condition tree JSON<textarea id="v9RecipeConditionsJson" rows="8">{"all":[]}</textarea></label>
+          </div></details>
+
+          <details open><summary>THEN — actions</summary><div class="form-stack nested-editor">
+            <div class="form-grid"><label>Action<select id="v9RecipeActionType"><option value="setSwitch">Set switch</option><option value="setVariable">Set/change variable</option><option value="setSelfSwitch">Set self switch</option><option value="setState">Set world state</option><option value="commonEvent">Reserve common event</option><option value="setTile">Set tile</option><option value="fillTiles">Fill tiles</option><option value="setRegion">Set region</option><option value="clearArea">Clear area</option><option value="graftPrefab">Graft prefab</option><option value="weather">Change weather</option><option value="tint">Tint screen</option><option value="checkpoint">Create checkpoint</option><option value="enableRecipe">Enable recipe</option><option value="runRecipe">Run recipe</option><option value="pluginCommand">Plugin command</option><option value="message">Show message</option><option value="log">Debug log</option><option value="emit">Emit change event</option></select></label><label>Definition JSON<input id="v9RecipeActionDefinition" value='{"id":1,"value":true}'></label></div>
+            <button id="v9AddRecipeAction" type="button">Add action</button>
+            <div id="v9RecipeActionList" class="recipe-block-list empty-state">No actions.</div>
+            <div class="button-row"><button id="v9RecipeActionUp" type="button" disabled>Move up</button><button id="v9RecipeActionDown" type="button" disabled>Move down</button><button id="v9DeleteRecipeAction" type="button" class="danger" disabled>Delete action</button></div>
+            <label>Complete action list JSON<textarea id="v9RecipeActionsJson" rows="10">[]</textarea></label>
+          </div></details>
+
+          <details><summary>Templates and project data</summary><div class="form-stack nested-editor">
+            <label>Starter template<select id="v9RecipeTemplate"><option value="region-weather">Enter region → weather and switch</option><option value="winter-overlay">Winter variable → map overlay tiles</option><option value="repair-prefab">Repair state → place prefab once</option><option value="resource-respawn">Timed resource respawn</option><option value="custom-event">Custom trigger → common event</option></select></label>
+            <div class="button-row"><button id="v9ApplyRecipeTemplate" type="button">Apply template</button><button id="v9ImportRecipesButton" type="button">Import</button><button id="v9ExportRecipesButton" type="button">Export</button></div>
+            <p class="hint">Saved to <code>data/HybridWorldRecipes.json</code>. The game plugin loads this file automatically when present.</p>
+          </div></details>
+
+          <div class="button-row"><button id="v9SaveRecipeButton" type="submit" class="primary">Save recipe and data file</button><button id="v9ValidateRecipesButton" type="button">Validate catalog</button><button id="v9SimulateRecipeButton" type="button">Simulate at selection</button></div>
+          <div id="v9RecipeReport" class="report empty-state">Select a recipe or create one.</div>
+        </form>
+      </section>
+
+      <section id="projectPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Production workspace</strong></div>
+        <details open><summary>Desktop app and recent projects</summary><div class="form-stack nested-editor"><label>Recent project<select id="v9RecentProjects"><option value="">No recent projects</option></select></label><div class="button-row"><button id="v9RefreshRecentProjects">Refresh</button><button id="v9OpenRecentProject">Open selected</button></div><div class="button-row"><button id="v9CheckUpdates">Check for updates</button><button id="v9DownloadUpdate" disabled>Download update</button><button id="v9InstallUpdate" disabled>Restart and install</button></div><div id="v9UpdateReport" class="report">Update service idle.</div></div></details>
+        <details open><summary>Compatibility lab</summary><div class="form-stack nested-editor"><div class="button-row"><button id="v9RunCompatibilityLab">Run full lab</button><button id="v9ExportCompatibility">Export report</button></div><label>Profile<select id="v9CompatibilityProfile"><option value="auto">Auto detect</option><option value="vanilla">Vanilla MZ</option><option value="visumz">VisuMZ stack</option><option value="pixel">Pixel movement</option><option value="lighting">Lighting/minimap</option></select></label><div id="v9CompatibilityReport" class="report empty-state">No compatibility run yet.</div></div></details>
+        <details><summary>Recovery manager</summary><div class="form-grid padded"><label>Retain transactions<input id="v9BackupRetention" type="number" min="1" value="10"></label><label>Snapshot interval (min)<input id="v9SnapshotMinutes" type="number" min="0" value="0"></label></div><div class="button-row padded"><button id="v9RefreshBackups">Refresh backups</button><button id="v9PreviewBackup">Preview</button><button id="v9RestoreBackup">Restore as layer</button><button id="v9SnapshotNow">Snapshot now</button></div><label class="padded">Backups<select id="v9BackupList" size="6"></select></label><div id="v9BackupReport" class="report padded empty-state">No backup selected.</div></details>
+        <details><summary>Git workspace</summary><div class="form-stack nested-editor"><div class="button-row"><button id="v9GitStatus">Status</button><button id="v9GitLog">History</button><button id="v9GitDiff">Diff</button><button id="v9WriteCanonical">Write canonical workspace</button></div><div class="form-grid"><label>Branch/tag<input id="v9GitRef" placeholder="feature/map"></label><label>Commit message<input id="v9GitMessage" placeholder="Update maps"></label></div><div class="button-row"><button id="v9GitCreateBranch">Create branch</button><button id="v9GitSwitchBranch">Switch</button><button id="v9GitCommit">Commit canonical data</button><button id="v9GitLfs">LFS status</button></div><pre id="v9GitOutput" class="console-output">Desktop Git integration is idle.</pre></div></details>
+        <details><summary>Asset and dependency manager</summary><div class="form-stack nested-editor"><div class="button-row"><button id="v9AuditAssets">Audit assets</button><button id="v9ExportAssetAudit">Export report</button></div><div class="form-grid"><label>Old project path<input id="v9AssetOldPath" placeholder="img/characters/Actor1.png"></label><label>New project path<input id="v9AssetNewPath" placeholder="img/characters/Hero.png"></label></div><label class="toggle"><input id="v9UpdateAssetReferences" type="checkbox" checked><span>Update JSON references</span></label><button id="v9RenameAsset" class="danger">Rename safely</button><div id="v9AssetReport" class="report empty-state">No asset audit yet.</div><hr><div class="form-grid"><label>Tileset<select id="v9TilesetSelect"></select></label><label>Tile ID<input id="v9FlagTileId" type="number" min="0" value="0"></label></div><label>Raw flag<input id="v9TileFlag" type="number" min="0" value="0"></label><div class="button-row"><button id="v9ReadTileFlag">Read flag</button><button id="v9WriteTileFlag">Write flag</button></div><div id="v9FlagSummary" class="report"></div></div></details>
+        <details><summary>Accessibility, localization, and onboarding</summary><div class="form-stack nested-editor"><label>Language<select id="v9Locale"><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="ja">日本語</option></select></label><label class="toggle"><input id="v9HighContrast" type="checkbox"><span>High contrast</span></label><label class="toggle"><input id="v9ReducedMotion" type="checkbox"><span>Reduced motion</span></label><label>Maximum visible tiles/frame<input id="v9RenderBudget" type="number" min="1000" value="12000"></label><div class="button-row"><button id="v9SaveSettings">Save settings</button><button id="v9ShowOnboarding">Show onboarding</button><button id="v9ExportDiagnostics">Export diagnostics</button></div></div></details>
+      </section>
+
+      <section id="historyPanel" class="inspector-panel">
+        <div class="panel-header"><strong>History and snapshots</strong></div>
+        <div class="button-row padded"><button id="createSnapshotButton" disabled>Snapshot</button><button id="restoreSnapshotButton" disabled>Restore</button><button id="clearHistoryButton" disabled>Clear undo</button></div>
+        <div id="historyList" class="history-list empty-state">No history</div>
+        <div class="panel-header"><strong>Project safety</strong></div>
+        <div class="button-grid padded"><button id="atomicSaveButton" disabled>Atomic save all</button><button id="recoverJournalButton" disabled>Recover journal</button><button id="rollbackJournalButton" disabled>Roll back journal</button><button id="dependencyAuditButton" disabled>Dependency audit</button></div>
+        <div id="journalReport" class="report padded empty-state">No pending recovery journal.</div>
+        <div class="panel-header"><strong>Validation</strong></div>
+        <div id="validationReport" class="report padded empty-state">Run validation to inspect the current project.</div>
+      </section>
+
+      <section id="diffPanel" class="inspector-panel">
+        <div class="panel-header"><strong>Visual diff and merge</strong></div>
+        <div class="form-stack padded"><button id="diffBaseButton" disabled>Compare with opened base</button><button id="diffFileButton" disabled>Compare with map file…</button><button id="threeWayButton" disabled>Three-way merge…</button></div>
+        <div id="diffSummary" class="report padded empty-state">Choose a comparison source.</div>
+        <div id="diffList" class="diff-list"></div>
+        <div class="button-row padded"><button id="acceptCurrentButton" disabled>Keep current</button><button id="acceptIncomingButton" disabled>Accept incoming</button><button id="exportChangeSetButton" disabled>Export change set</button></div>
+        <div class="panel-header"><strong>Branches and review</strong></div>
+        <div class="form-stack padded"><label>Branch<select id="branchSelect"></select></label><div class="button-row"><button id="createBranchButton" disabled>New branch</button><button id="switchBranchButton" disabled>Switch</button><button id="mergeBranchButton" disabled>Merge</button></div><label>Review comment<textarea id="reviewCommentField" rows="3"></textarea></label><div class="button-row"><button id="addReviewCommentButton" disabled>Add at selection/event</button><button id="resolveReviewButton" disabled>Resolve selected</button></div></div>
+        <div id="reviewList" class="compact-list empty-state">No review comments</div>
+        <details open><summary>Production review threads</summary><div class="form-stack nested-editor"><div class="form-grid"><label>Author<input id="v9ReviewAuthor" value="Mapper"></label><label>Status<select id="v9ReviewStatus"><option value="open">Open</option><option value="in-progress">In progress</option><option value="resolved">Resolved</option></select></label></div><label>Comment or reply<textarea id="v9ReviewText" rows="3"></textarea></label><label>Attachment<input id="v9ReviewAttachment" type="file"></label><div class="button-row"><button id="v9CreateReviewThread" type="button">New thread at selection/event</button><button id="v9ReplyReviewThread" type="button" disabled>Reply</button><button id="v9UpdateReviewStatus" type="button" disabled>Update status</button><button id="v9ExportReviewThreads" type="button">Export threads</button></div></div><div id="v9ReviewThreadList" class="compact-list empty-state">No production review threads.</div></details>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="textDialog">
+    <form method="dialog" class="dialog-card">
+      <h2 id="dialogTitle">Input</h2>
+      <p id="dialogDescription"></p>
+      <label id="dialogLabel">Value<input id="dialogInput" type="text"></label>
+      <textarea id="dialogTextarea" rows="12" class="hidden" spellcheck="false"></textarea>
+      <div class="dialog-actions"><button value="cancel">Cancel</button><button id="dialogConfirm" value="confirm" class="primary">Confirm</button></div>
+    </form>
+  </dialog>
+
+  <input id="mapFileInput" type="file" accept=".json,application/json" multiple hidden>
+  <input id="singleMapFileInput" type="file" accept=".json,application/json" hidden>
+  <input id="v9EventTemplateFile" type="file" accept=".json,application/json" hidden>
+  <input id="v9PrefabFile" type="file" accept=".json,application/json" hidden>
+  <input id="v9RecipeFile" type="file" accept=".json,.htgrecipes,application/json" hidden>
+  <script src="HybridTileCryptoV18.js"></script>
+  <script src="HybridTileStorageV18.js"></script>
+  <script src="HybridTileSchemasV18.js"></script>
+  <script src="HybridTileSchemaV18.js"></script>
+  <script src="HybridTilePwaV18.js"></script>
+  <script src="HybridTileStudio.js"></script>
+  <script src="HybridTileStudioServicesV18.js"></script>
+  <script src="HybridTileStudioV18.js"></script>
+</body>
+</html>

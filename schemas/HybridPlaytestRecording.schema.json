@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridPlaytestRecording.schema.json",
+  "title": "Hybrid Tile Studio Playtest Recording",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "name",
+    "status",
+    "startedAt",
+    "start",
+    "events"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridPlaytestRecording"
+    },
+    "version": {
+      "const": 1
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "status": {
+      "enum": [
+        "recording",
+        "complete"
+      ]
+    },
+    "startedAt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stoppedAt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reason": {
+      "type": "string"
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "start": {
+      "$ref": "#/$defs/snapshot"
+    },
+    "end": {
+      "$ref": "#/$defs/snapshot"
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "$defs": {
+    "position": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "direction": {
+          "type": "integer"
+        },
+        "transferring": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "snapshot": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "HybridTileLiveState"
+        },
+        "version": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "pluginVersion": {
+          "type": "string"
+        },
+        "capturedAt": {
+          "type": "integer"
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "player": {
+          "$ref": "#/$defs/position"
+        },
+        "switches": {
+          "type": "object"
+        },
+        "variables": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "format",
+        "version",
+        "capturedAt",
+        "mapId"
+      ],
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "index",
+        "at",
+        "frame",
+        "type",
+        "mapId",
+        "detail"
+      ],
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "at": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "frame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "player": {
+          "$ref": "#/$defs/position"
+        },
+        "detail": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

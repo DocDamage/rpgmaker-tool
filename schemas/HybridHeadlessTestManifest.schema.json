@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridHeadlessTestManifest.schema.json",
+  "title": "Hybrid Tile Studio Headless Test Manifest",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "scenarios",
+    "goldenMaps"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridHeadlessTestManifest"
+    },
+    "version": {
+      "const": 1
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "$ref": "HybridPlaytestJourney.schema.json"
+      }
+    },
+    "goldenMaps": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "checksum"
+        ],
+        "properties": {
+          "checksum": {
+            "type": "string",
+            "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "command": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

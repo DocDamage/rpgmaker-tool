@@ -1,0 +1,27 @@
+{
+  "format": "HybridPlaytestRecording",
+  "version": 1,
+  "pluginVersion": "14.0.0",
+  "id": "recording-market-gate",
+  "name": "Enter the market gate",
+  "status": "complete",
+  "startedAt": 1784304000000,
+  "stoppedAt": 1784304012500,
+  "durationMs": 12500,
+  "reason": "manual",
+  "tags": ["smoke", "transfer"],
+  "start": {
+    "format": "HybridTileLiveState", "version": 1, "pluginVersion": "14.0.0", "capturedAt": 1784304000000,
+    "mapId": 1, "player": { "x": 8, "y": 12, "direction": 8, "transferring": false }, "switches": { "1": false }, "variables": { "1": 0 }
+  },
+  "events": [
+    { "index": 0, "at": 1784304001000, "frame": 60, "type": "interaction", "mapId": 1, "player": { "x": 8, "y": 11, "direction": 8 }, "detail": { "eventId": 3 } },
+    { "index": 1, "at": 1784304001500, "frame": 90, "type": "switch", "mapId": 1, "player": { "x": 8, "y": 11, "direction": 8 }, "detail": { "id": 1, "value": true } },
+    { "index": 2, "at": 1784304002500, "frame": 150, "type": "transfer", "mapId": 2, "player": { "x": 4, "y": 7, "direction": 2 }, "detail": { "fromMapId": 1, "toMapId": 2 } }
+  ],
+  "end": {
+    "format": "HybridTileLiveState", "version": 1, "pluginVersion": "14.0.0", "capturedAt": 1784304012500,
+    "mapId": 2, "player": { "x": 4, "y": 7, "direction": 2, "transferring": false }, "switches": { "1": true }, "variables": { "1": 0 }
+  },
+  "checksum": "fnv1a-6d1fd49a"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "starter-overworld",
+  "format": "HybridWorldRecipeGraph",
+  "version": 2,
+  "studioVersion": "18.1.0",
+  "name": "Starter Overworld",
+  "seed": "worldsmith-starter",
+  "nodes": [
+    { "id": "terrain", "type": "terrain", "name": "Terrain Fields", "options": { "scale": 0.12 } },
+    { "id": "biomes", "type": "biome", "name": "Climate Biomes", "options": { "temperature": true, "moisture": true } },
+    { "id": "rivers", "type": "river", "name": "Downhill Rivers", "options": { "count": 3 } },
+    { "id": "roads", "type": "roads", "name": "Terrain Roads", "options": { "connectSettlements": true } },
+    { "id": "settlements", "type": "settlements", "name": "Settlements", "options": { "minimumSpacing": 12 } },
+    { "id": "validate", "type": "validate", "name": "Passage Validation", "options": { "repair": false } }
+  ],
+  "edges": [
+    { "from": "terrain", "to": "biomes" },
+    { "from": "biomes", "to": "rivers" },
+    { "from": "rivers", "to": "roads" },
+    { "from": "roads", "to": "settlements" },
+    { "from": "settlements", "to": "validate" }
+  ],
+  "constraints": ["town:12,8", "no-cliffs:0,0,8,8"],
+  "lockedCells": ["12,8", "13,8"],
+  "order": ["terrain", "biomes", "rivers", "roads", "settlements", "validate"],
+  "valid": true
+}

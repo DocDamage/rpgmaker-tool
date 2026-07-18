@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridWorldRecipeGraph.schema.json",
+  "title": "Hybrid World Recipe Graph",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "nodes",
+    "edges",
+    "seed"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "format": {
+      "const": "HybridWorldRecipeGraph"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._:-]+$"
+          },
+          "type": {
+            "enum": [
+              "terrain",
+              "biome",
+              "coast",
+              "river",
+              "roads",
+              "settlements",
+              "dungeon",
+              "interiors",
+              "decorate",
+              "validate",
+              "stage"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "condition": {}
+        },
+        "additionalProperties": true
+      }
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "lockedCells": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "graphHash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

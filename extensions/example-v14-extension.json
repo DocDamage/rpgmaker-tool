@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/HybridStudioExtension.schema.json",
+  "format": "HybridTileStudioExtension",
+  "id": "example.world-health-v14",
+  "name": "World Health v14 Example",
+  "version": "1.0.0",
+  "description": "Example declarative validator and Studio panel designed for sandbox policy testing.",
+  "publisher": "local-example",
+  "permissions": ["map:read", "project:validate", "ui:contribute"],
+  "contributes": {
+    "brushes": [],
+    "generators": [],
+    "validators": [{ "id": "example.world-health-v14.transfers", "name": "Transfer Health" }],
+    "recipeNodes": [],
+    "panels": [{ "id": "example.world-health-v14.panel", "title": "World Health" }]
+  },
+  "sandbox": { "timeBudgetMs": 16, "memoryBudgetKb": 1024 }
+}

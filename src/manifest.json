@@ -1,0 +1,75 @@
+{
+  "version": "18.1.0",
+  "canonicalizationVersion": 1,
+  "runtime": {
+    "output": "HybridTileGraft.js",
+    "parts": [
+      "src/runtime/parts/00-plugin-header.js",
+      "src/runtime/parts/10-general-utilities.js",
+      "src/runtime/parts/20-save-and-migration.js",
+      "src/runtime/parts/30-tile-map-core.js",
+      "src/runtime/parts/40-spawned-events.js",
+      "src/runtime/parts/50-live-map-reconstruction.js",
+      "src/runtime/parts/60-extraction-and-public-operations.js",
+      "src/runtime/parts/70-smart-fill-and-transforms.js",
+      "src/runtime/parts/80-generators.js",
+      "src/runtime/parts/90-engine-and-runtime-editor.js",
+      "src/runtime/parts/100-production-foundation.js",
+      "src/runtime/parts/110-world-intelligence.js",
+      "src/runtime/parts/120-live-production.js",
+      "src/runtime/parts/130-creator-console.js",
+      "src/runtime/parts/140-worldsmith-services.js",
+      "src/runtime/parts/150-world-recipes.js",
+      "src/runtime/parts/160-rule-painting-and-recovery.js",
+      "src/runtime/parts/170-public-api.js",
+      "src/runtime/parts/180-plugin-commands.js"
+    ]
+  },
+  "studioFiles": [
+    "HybridTileStudio.html",
+    "HybridTileStudio.css",
+    "HybridTileStudioV18.css",
+    "HybridTileStudio.js",
+    "HybridTileStudioServicesV18.js",
+    "HybridTileStudioV18.js",
+    "HybridTileCryptoV18.js",
+    "HybridTileStorageV18.js",
+    "HybridTileSchemaV18.js",
+    "HybridTilePwaV18.js",
+    "HybridTileWorker.js"
+  ],
+  "desktopFiles": [
+    "electron-main.js",
+    "electron-preload.js"
+  ],
+  "coreAssets": [
+    "./",
+    "./HybridTileStudio.html",
+    "./HybridTileStudio.css",
+    "./HybridTileStudioV18.css",
+    "./HybridTileCryptoV18.js",
+    "./HybridTileStorageV18.js",
+    "./HybridTileSchemasV18.js",
+    "./HybridTileSchemaV18.js",
+    "./HybridTilePwaV18.js",
+    "./HybridTileStudio.js",
+    "./HybridTileStudioServicesV18.js",
+    "./HybridTileStudioV18.js",
+    "./HybridTileWorker.js",
+    "./HybridTileStudio.png",
+    "./HybridTileGuide.png",
+    "./manifest.webmanifest",
+    "./asset-manifest.json",
+    "./examples/PracticeMap001.json"
+  ],
+  "legacyWorkbenchVersions": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ]
+}

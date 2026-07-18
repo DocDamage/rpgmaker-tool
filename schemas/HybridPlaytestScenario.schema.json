@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridPlaytestScenario.schema.json",
+  "title": "Hybrid Tile Studio Playtest Scenario",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "name",
+    "setup",
+    "steps",
+    "assertions"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridPlaytestScenario"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "sourceRecordingId": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "setup": {
+      "$ref": "#/$defs/state"
+    },
+    "steps": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mapId": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "player": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "detail": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "assertions": {
+      "$ref": "#/$defs/state"
+    }
+  },
+  "$defs": {
+    "state": {
+      "type": "object",
+      "properties": {
+        "mapId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "player": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "switches": {
+          "type": "object"
+        },
+        "variables": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

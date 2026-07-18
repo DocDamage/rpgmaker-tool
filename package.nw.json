@@ -1,0 +1,14 @@
+{
+  "name": "hybrid-tile-studio",
+  "version": "18.1.0",
+  "main": "HybridTileStudio.html",
+  "window": {
+    "title": "Hybrid Tile Studio",
+    "width": 1600,
+    "height": 960,
+    "min_width": 960,
+    "min_height": 640,
+    "icon": "HybridTileStudio.png"
+  },
+  "chromium-args": "--enable-features=FileSystemAccessAPI"
+}

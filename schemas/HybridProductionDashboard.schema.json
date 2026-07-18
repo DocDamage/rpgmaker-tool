@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridProductionDashboard.schema.json",
+  "title": "Hybrid Production Dashboard",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "score",
+    "ready",
+    "issues"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "format": {
+      "const": "HybridProductionDashboard"
+    },
+    "version": {
+      "const": 1
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "ready": {
+      "type": "boolean"
+    },
+    "errors": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "warnings": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "maps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "type",
+          "message"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "fingerprint": {}
+  },
+  "additionalProperties": true
+}

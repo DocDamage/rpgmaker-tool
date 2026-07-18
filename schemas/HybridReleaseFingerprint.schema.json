@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.studio/schemas/HybridReleaseFingerprint.schema.json",
+  "title": "Hybrid Tile Studio Release Fingerprint",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "id",
+    "channel",
+    "createdAt",
+    "workspaceHash",
+    "extensionHash",
+    "fingerprint"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridReleaseFingerprint"
+    },
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "studioVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "channel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "workspaceHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "packLockHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "recipeHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "extensionHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "testsHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "goldenHash": {
+      "$ref": "#/$defs/hash"
+    },
+    "mapIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "uniqueItems": true
+    },
+    "fingerprint": {
+      "$ref": "#/$defs/hash"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^(?:(?:fnv1a-)?[0-9a-f]{8}|sha256-[0-9a-f]{64})$"
+    }
+  },
+  "additionalProperties": true
+}

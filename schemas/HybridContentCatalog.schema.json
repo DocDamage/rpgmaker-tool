@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridContentCatalog.schema.json",
+  "title": "Hybrid Tile Studio Content Catalog",
+  "type": "object",
+  "required": [
+    "format",
+    "id",
+    "items"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridContentCatalog"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visibility": {
+      "enum": [
+        "private",
+        "team",
+        "public"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "world-pack",
+            "biome-graph",
+            "rule-layer",
+            "prefab-pack"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "pack": {
+          "type": "object"
+        },
+        "graph": {
+          "type": "object",
+          "required": [
+            "id",
+            "nodes"
+          ]
+        },
+        "layer": {
+          "type": "object",
+          "required": [
+            "id"
+          ]
+        },
+        "preview": {
+          "type": "object"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "world-pack"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "pack"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "biome-graph"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "graph"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "rule-layer"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "layer"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "prefab-pack"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "pack"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": true
+    }
+  }
+}

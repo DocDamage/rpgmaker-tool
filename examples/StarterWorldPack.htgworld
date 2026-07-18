@@ -1,0 +1,55 @@
+{
+  "format": "HybridWorldPack",
+  "id": "starter.living-forest",
+  "name": "Living Forest Starter",
+  "version": "1.0.0",
+  "schemaVersion": 4,
+  "capabilities": ["recipes", "zones", "resources", "npc-lives", "npc-travel", "rule-layers", "advanced-rule-brushes", "procedural-generation", "graph-caching", "atlas-layouts", "quest-graphs", "map-repair"],
+  "permissions": ["world:read", "world:write", "project:validate"],
+  "dependencies": [],
+  "recipes": [
+    {
+      "id": "living-forest.enter-glade",
+      "name": "Enter the Forest Glade",
+      "description": "Start gentle rain the first time the player enters the glade.",
+      "enabled": false,
+      "triggers": [{ "type": "zoneEnter", "zoneId": "living-forest.glade" }],
+      "conditions": { "all": [{ "type": "fact", "name": "living-forest.discovered", "value": false }] },
+      "actions": [
+        { "type": "weather", "weather": "rain", "power": 3, "duration": 60 },
+        { "type": "addFact", "name": "living-forest.discovered", "value": true },
+        { "type": "message", "text": "You discovered the forest glade." }
+      ],
+      "once": true
+    }
+  ],
+  "zones": [
+    { "id": "living-forest.glade", "name": "Forest Glade", "mapIds": [1], "rect": { "x": 8, "y": 6, "width": 10, "height": 8 }, "tags": ["forest", "outdoors"] }
+  ],
+  "entities": [],
+  "resources": [
+    { "id": "living-forest.herbs", "name": "Forest Herbs", "quantity": 3, "capacity": 3, "respawnMinutes": 1440, "tags": ["herb", "renewable"] }
+  ],
+  "variants": [],
+  "npcs": [
+    { "id": "living-forest.ranger", "name": "Forest Ranger", "schedule": [{ "id": "ranger-patrol", "activity": "Patrolling the glade", "start": 420, "end": 1080, "mapId": 1, "x": 10, "y": 8 }] }
+  ],
+  "npcRoutes": [
+    { "id": "living-forest.ranger-route", "npcId": "living-forest.ranger", "name": "Ranger Patrol", "minutes": 30, "loop": true, "points": [{ "id": "west", "mapId": 1, "x": 8, "y": 8 }, { "id": "east", "mapId": 1, "x": 17, "y": 8 }] }
+  ],
+  "ruleLayers": [
+    { "id": "living-forest.encounters", "name": "Forest Encounters", "mapId": 1, "kind": "encounter", "cells": { "10,8": "forest" }, "rules": { "actions": [{ "type": "setState", "key": "encounter.biome", "value": "forest" }] } }
+  ],
+  "ruleBrushes": [
+    { "id": "living-forest.soft-encounters", "name": "Soft Forest Encounters", "shape": "circle", "size": 7, "hardness": 0.6, "falloff": "smooth", "mode": "paint", "value": "forest" }
+  ],
+  "biomeGraphs": [
+    { "id": "living-forest.graph", "name": "Living Forest Graph", "seed": "living-forest", "nodes": [{ "id": "climate", "type": "climate", "options": { "tileA": 2048, "tileB": 2816, "layer": 0 } }] }
+  ],
+  "tests": [
+    { "id": "living-forest.glade-test", "name": "Glade discovery", "recipeId": "living-forest.enter-glade", "context": { "mapId": 1, "x": 10, "y": 8 }, "initial": { "facts": { "living-forest.discovered": false } }, "expect": [{ "type": "fact", "name": "living-forest.discovered", "value": true }] }
+  ],
+  "atlasLayouts": [{ "id": "living-forest.atlas", "name": "Living Forest Atlas", "positions": { "1": { "x": 80, "y": 70 } } }],
+  "questGraphs": [{ "id": "living-forest.quest-graph", "name": "Living Forest Quest Graph", "recipeIds": ["living-forest.enter-glade"] }],
+  "stateDefaults": {}
+}

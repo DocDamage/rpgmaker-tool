@@ -1,0 +1,60 @@
+
+> hybrid-tile-studio@18.1.0 pretest
+> npm run build && npm run check:generated
+
+
+> hybrid-tile-studio@18.1.0 build
+> node scripts/build-release.js
+
+Generated files are current.
+
+> hybrid-tile-studio@18.1.0 check:generated
+> node scripts/build-release.js --check
+
+Generated files are current.
+
+> hybrid-tile-studio@18.1.0 test
+> npm run test:plugin && npm run test:studio && npm run test:v18-services && npm run test:v18-foundations && npm run test:migrations && npm run test:security && npm run test:worker && npm run test:cli
+
+
+> hybrid-tile-studio@18.1.0 test:plugin
+> node tests/integration/test_hybrid_tile_graft.js
+
+HybridTileGraft v18.1.0 loaded.
+HybridTileGraft v18 mock integration tests passed.
+
+> hybrid-tile-studio@18.1.0 test:studio
+> node tests/integration/test_hybrid_tile_studio.mjs
+
+Hybrid Tile Studio v18.1 consolidated DOM, delta edit, recovery, apply, and integrity test passed.
+
+> hybrid-tile-studio@18.1.0 test:v18-services
+> node tests/integration/test_hybrid_tile_services_v18.js
+
+Hybrid Tile Studio v18.1 format, delta merge, and spatial services passed.
+
+> hybrid-tile-studio@18.1.0 test:v18-foundations
+> node tests/integration/test_hybrid_tile_foundations_v18.js
+
+Hybrid Tile Studio v18.1 crypto, storage, schema, signature, and PWA foundations passed.
+
+> hybrid-tile-studio@18.1.0 test:migrations
+> node tests/integration/test_hybrid_tile_migration_recovery_v18.mjs
+
+Hybrid Tile Studio v18.1 V17 migration, project-first recovery, browser fallback, and dual-failure tests passed.
+
+> hybrid-tile-studio@18.1.0 test:security
+> node tests/integration/test_electron_security_v18.js
+
+Hybrid Tile Studio v18.1 Electron boundary, atomic-write, and recent-project assertions passed.
+
+> hybrid-tile-studio@18.1.0 test:worker
+> node tests/integration/test_hybrid_tile_worker.js
+
+Hybrid Tile Studio v18.1 worker WFC, complete flood fill, and deterministic generation tests passed.
+
+> hybrid-tile-studio@18.1.0 test:cli
+> node HybridTileStudioCLI.js --self-test && node tests/integration/test_hybrid_tile_cli.js
+
+Hybrid Tile Studio CLI v18.1.0 self-test passed.
+Hybrid Tile Studio v18.1 CLI project validation and SHA-256 fingerprint test passed.

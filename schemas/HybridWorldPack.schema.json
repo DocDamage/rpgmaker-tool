@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridWorldPack.schema.json",
+  "title": "Hybrid Tile Studio World Pack",
+  "type": "object",
+  "required": [
+    "format",
+    "id",
+    "version"
+  ],
+  "properties": {
+    "format": {
+      "const": "HybridWorldPack"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+){0,2}([+-][A-Za-z0-9.-]+)?$"
+    },
+    "pluginVersion": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "recipes",
+          "prefabs",
+          "events",
+          "world-state",
+          "zones",
+          "entities",
+          "resources",
+          "variants",
+          "npc-lives",
+          "npc-travel",
+          "rule-layers",
+          "advanced-rule-brushes",
+          "procedural-generation",
+          "graph-caching",
+          "atlas-layouts",
+          "quest-graphs",
+          "map-repair",
+          "extension-contributions"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "map:read",
+          "map:write",
+          "world:read",
+          "world:write",
+          "project:validate",
+          "pack:manage",
+          "ui:contribute"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "range": {
+                "type": "string"
+              },
+              "minVersion": {
+                "type": "string"
+              },
+              "optional": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "recipes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "triggers",
+          "conditions",
+          "actions"
+        ]
+      }
+    },
+    "prefabs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "eventTemplates": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "npcs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "npcRoutes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "npcId",
+          "points"
+        ]
+      }
+    },
+    "ruleLayers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "ruleBrushes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "shape"
+        ]
+      }
+    },
+    "biomeGraphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "nodes"
+        ]
+      }
+    },
+    "atlasLayouts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "questGraphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "extensionContributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "recipeId"
+        ]
+      }
+    },
+    "stateDefaults": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "integrity": {
+      "type": "object",
+      "required": [
+        "publisherId",
+        "digest"
+      ],
+      "properties": {
+        "publisherId": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        },
+        "algorithm": {
+          "enum": [
+            "fnv1a32",
+            "fnv1a-32",
+            "sha256",
+            "ed25519"
+          ]
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "canonicalizationVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "publicKey": {
+          "type": "string",
+          "minLength": 32
+        },
+        "signature": {
+          "type": "string",
+          "minLength": 32
+        },
+        "keyId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "algorithm": {
+                "const": "ed25519"
+              }
+            },
+            "required": [
+              "algorithm"
+            ]
+          },
+          "then": {
+            "required": [
+              "publicKey",
+              "signature",
+              "keyId",
+              "canonicalizationVersion"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "additionalProperties": true
+}

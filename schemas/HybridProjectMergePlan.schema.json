@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybridtile.local/schemas/HybridProjectMergePlan.schema.json",
+  "title": "Hybrid Project Merge Plan",
+  "type": "object",
+  "required": [
+    "id",
+    "format",
+    "version",
+    "strategy",
+    "conflicts",
+    "merged"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "format": {
+      "const": "HybridProjectMergePlan"
+    },
+    "version": {
+      "const": 1
+    },
+    "strategy": {
+      "enum": [
+        "manual",
+        "ours",
+        "theirs",
+        "base"
+      ]
+    },
+    "baseHash": {
+      "type": "string"
+    },
+    "oursHash": {
+      "type": "string"
+    },
+    "theirsHash": {
+      "type": "string"
+    },
+    "mergedHash": {
+      "type": "string"
+    },
+    "resolved": {
+      "type": "boolean"
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "merged": {}
+  },
+  "additionalProperties": true
+}

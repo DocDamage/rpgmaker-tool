@@ -1,0 +1,19 @@
+{
+  "format": "HybridContentLibrary",
+  "version": 2,
+  "studioVersion": "18.1.0",
+  "items": [
+    {
+      "id": "starter-inn-room",
+      "name": "Starter Inn Room",
+      "type": "room",
+      "version": 2,
+      "description": "A reusable room entry showing the portable content format.",
+      "tags": ["interior", "inn", "starter"],
+      "dependencies": [],
+      "favorite": true,
+      "contentHash": "example-generated-on-import",
+      "payload": { "width": 12, "height": 9, "mapFragment": null }
+    }
+  ]
+}
