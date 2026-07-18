@@ -2,7 +2,7 @@
 
 ## Repeatable isolated engine smoke
 
-Before production-project testing, enable `tests/fixtures/rpgmaker/HybridTileGraftSmokeProbe.js` immediately after `HybridTileGraft.js` in a disposable RPG Maker MZ project. Start a new game and require both the green PASS banner and a successful `real-engine-smoke.json` marker. Commit refreshed evidence only after `npm run test:rpgmaker-evidence` passes. The source-bound isolated smoke passed in official RPG Maker MZ 1.10.0 on 2026-07-18.
+Before production-project testing, enable `tests/fixtures/rpgmaker/HybridTileGraftSmokeProbe.js` immediately after `HybridTileGraft.js` in disposable projects for both entries in `tests/fixtures/rpgmaker/engine-matrix.json`. Require the green PASS banner, restored region/world-state assertions, temporary-save cleanup, measured frame timing, and a successful `real-engine-smoke.json` marker from each core. Commit refreshed evidence only after both `npm run test:rpgmaker-evidence` and `npm run test:rpgmaker-matrix` pass.
 
 ## Production-project checklist
 

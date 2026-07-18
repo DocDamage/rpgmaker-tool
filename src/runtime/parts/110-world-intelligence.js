@@ -2,11 +2,6 @@
     // v13 world intelligence, history, packaging, and extension services
     // -------------------------------------------------------------------------
 
-    const EXTENSION_PERMISSIONS = new Set([
-        "map:read", "map:write", "world:read", "world:write", "project:validate",
-        "pack:manage", "ui:contribute"
-    ]);
-
     function projectMapIds(options = {}) {
         const requested = normalizeList(options.mapIds).map(Number).filter(value => value > 0);
         if (requested.length) return [...new Set(requested)];
@@ -281,4 +276,3 @@
     }
 
     function listProjectDeploymentReports() { return (ensureStore().deploymentReports || []).map(item => ({ id: item.id, createdAt: item.createdAt, ready: !!item.ready, errors: item.validation?.errors || 0, warnings: item.validation?.warnings || 0 })); }
-

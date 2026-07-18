@@ -23,13 +23,29 @@
     "./examples/PracticeMap001.json"
   ],
   "assets": {
+    "ENGINE_COMPATIBILITY.md": {
+      "sha256": "0b3294bda37b8beecc156e6ae72e0e231bfa69e38f141d55dde393ebaf4f40a8",
+      "bytes": 804
+    },
+    "EXTENSION_CAPABILITIES.md": {
+      "sha256": "7f74f4743d793f61431e9410743664eb3a63772e678fe6814c1e1f457ff4edd0",
+      "bytes": 1131
+    },
     "HybridTileCryptoV18.js": {
       "sha256": "3d0fa2080b5f6701d56a72324534d03a84d78dc882146cd96d48554f00ff76c6",
       "bytes": 6058
     },
+    "HybridTileGraft.api.json": {
+      "sha256": "ba5f135cbcb65202a4d51e40879a45e341cf5b6ff03cbd738cf7edf360f1ed2f",
+      "bytes": 56146
+    },
+    "HybridTileGraft.d.ts": {
+      "sha256": "d6f621914958c752d78ca98b236756990e981b5a1feeb20e3dbe26f130995eba",
+      "bytes": 30717
+    },
     "HybridTileGraft.js": {
-      "sha256": "a8eebca67a44f19460c91b38e126c6890d9ebee63172d5d1d93acf601613c247",
-      "bytes": 969226
+      "sha256": "6315fb9bbde298308cdff1a6e60510641ee674e46817c53e45454211b368516c",
+      "bytes": 978375
     },
     "HybridTilePwaV18.js": {
       "sha256": "199452ae269d597f8c3138b13ac971bad8af41a4717bdda3dc21a90931a333cc",
@@ -40,8 +56,8 @@
       "bytes": 8295
     },
     "HybridTileSchemasV18.js": {
-      "sha256": "d90ece363d3d64811ad998f03609e064da4000f4f54cf2ab2d6cd95851a3a5f8",
-      "bytes": 38040
+      "sha256": "6897747b9210abd615c2a54c4f4190a43c5d288abaaadb6e40b9ed972dac6032",
+      "bytes": 38242
     },
     "HybridTileStorageV18.js": {
       "sha256": "6d0ddc6dc81aca0a7d944535e6a5b8aea20f5af21cbd96d3a26738b9f9c80e92",
@@ -135,6 +151,10 @@
       "sha256": "abbb9d1dc13180226b5a011dc4eb743c29828d0baee12a8350dca9be5804a66c",
       "bytes": 12191
     },
+    "PUBLIC_API.md": {
+      "sha256": "33061d923ede2ad1d2d16f4b5a90d3244690d7dd15af74d5bbdb7b774b2b3d15",
+      "bytes": 702
+    },
     "electron-main.js": {
       "sha256": "1f4aa0a8d80522d4e3f4591e5a00164ac4c8ac664e651b9292f3af4ee6892c66",
       "bytes": 11865
@@ -204,8 +224,8 @@
       "bytes": 583
     },
     "package.json": {
-      "sha256": "45c560a8d9e66e0e93d7f21f08f3a2cd6ae246256e12109c5c3ed7cac79a6b3e",
-      "bytes": 9426
+      "sha256": "05e78f985176c6a8b59439ed840907e5e27153ed42283e498d932d8c642b4b48",
+      "bytes": 10085
     },
     "package.nw.json": {
       "sha256": "82353bd8eca5e24f005aa1c2096d89660fd5828aa965053bbb827759c8064d01",
@@ -276,8 +296,8 @@
       "bytes": 3808
     },
     "schemas/HybridStudioExtension.schema.json": {
-      "sha256": "ff86b9fb37c3a31dc10ef1db5089a0f5cb147e14dde7448bb7c499bf88d66db5",
-      "bytes": 4097
+      "sha256": "da0126bd451ee1ec31a8595733710c3c5fa8d93be377564591dcea9b38ffdfe8",
+      "bytes": 4536
     },
     "schemas/HybridUniversalRecoveryPoint.schema.json": {
       "sha256": "6ee6b114acbeefcbaaa4010a050e89e249c13aa1abbe2e6ebf2a125e4aeb53d5",

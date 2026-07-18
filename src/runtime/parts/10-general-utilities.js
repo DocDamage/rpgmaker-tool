@@ -275,6 +275,87 @@
         return count;
     }
 
+    let latestPluginCommandResult = null;
+    let pluginCommandSequence = 0;
+
+    function serializableCommandValue(value) {
+        if (value === undefined) return null;
+        try { return JSON.parse(JSON.stringify(value)); }
+        catch (_error) { return String(value); }
+    }
+
+    function commandOutputId(args, key, fallback) {
+        return Math.max(0, integer(args && args[key], fallback));
+    }
+
+    function applyPluginCommandOutputs(result, args = {}) {
+        const resultVariableId = commandOutputId(args, "resultVariableId", COMMAND_RESULT_VARIABLE_ID);
+        const successSwitchId = commandOutputId(args, "successSwitchId", COMMAND_SUCCESS_SWITCH_ID);
+        const failureSwitchId = commandOutputId(args, "failureSwitchId", COMMAND_FAILURE_SWITCH_ID);
+        const failureCommonEventId = commandOutputId(args, "failureCommonEventId", COMMAND_FAILURE_COMMON_EVENT_ID);
+        if (resultVariableId > 0 && typeof $gameVariables !== "undefined" && $gameVariables?.setValue) {
+            $gameVariables.setValue(resultVariableId, JSON.stringify(result));
+        }
+        if (successSwitchId > 0 && typeof $gameSwitches !== "undefined" && $gameSwitches?.setValue) {
+            $gameSwitches.setValue(successSwitchId, result.ok);
+        }
+        if (failureSwitchId > 0 && typeof $gameSwitches !== "undefined" && $gameSwitches?.setValue) {
+            $gameSwitches.setValue(failureSwitchId, !result.ok);
+        }
+        if (!result.ok && failureCommonEventId > 0 && typeof $gameTemp !== "undefined" && $gameTemp?.reserveCommonEvent) {
+            if (!$gameTemp.isCommonEventReserved || !$gameTemp.isCommonEventReserved()) {
+                $gameTemp.reserveCommonEvent(failureCommonEventId);
+            }
+        }
+    }
+
+    function publishPluginCommandResult(context, status, value = null, error = null) {
+        if (!context || context.completed) return latestPluginCommandResult ? deepClone(latestPluginCommandResult) : null;
+        context.completed = true;
+        const completedAt = Date.now();
+        const result = {
+            format: "HybridTileGraftCommandResult",
+            version: 1,
+            pluginVersion: VERSION,
+            sequence: ++pluginCommandSequence,
+            command: String(context.command || "unknown"),
+            status: String(status),
+            ok: status === "succeeded",
+            startedAt: context.startedAt,
+            completedAt,
+            durationMs: Math.max(0, clockNow() - context.startedClock),
+            value: status === "succeeded" ? serializableCommandValue(value) : null,
+            error: error ? {
+                name: String(error.name || "Error"),
+                message: String(error.message || error),
+                reportId: context.errorReportId || null
+            } : null
+        };
+        latestPluginCommandResult = result;
+        applyPluginCommandOutputs(result, context.args || {});
+        for (const listener of commandResultListeners) {
+            try { listener(deepClone(result)); }
+            catch (listenerError) { console.error(`${PLUGIN_NAME}: command-result listener failed.`, listenerError); }
+        }
+        return deepClone(result);
+    }
+
+    function lastCommandResult() {
+        return latestPluginCommandResult ? deepClone(latestPluginCommandResult) : null;
+    }
+
+    function clearCommandResult() {
+        const previous = lastCommandResult();
+        latestPluginCommandResult = null;
+        return previous;
+    }
+
+    function onCommandResult(callback) {
+        if (typeof callback !== "function") return () => false;
+        commandResultListeners.add(callback);
+        return () => commandResultListeners.delete(callback);
+    }
+
     function guardedOperation(name, callback, context = {}) {
         const started = clockNow();
         try {
@@ -581,4 +662,3 @@
             profiles: listAdapterProfiles()
         };
     }
-

@@ -1,0 +1,2709 @@
+{
+  "format": "HybridTileGraftPublicApiManifest",
+  "version": 1,
+  "pluginVersion": "18.1.0",
+  "apiVersion": 1,
+  "removalPolicy": "Stable APIs require a major release to remove. Deprecated APIs remain for at least two minor releases and include a documented replacement when one exists.",
+  "entries": [
+    {
+      "name": "version",
+      "kind": "property",
+      "stability": "stable"
+    },
+    {
+      "name": "pluginName",
+      "kind": "property",
+      "stability": "stable"
+    },
+    {
+      "name": "graftArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "graftAreaAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "graftAreaToMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "graftPrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "graftPrefabAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "graftPrefabToMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "preloadMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "preloadPrefabMaps",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "preloadChildMaps",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerPrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPrefabs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "prefabPayload",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "capturePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "duplicatePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "renamePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewPrefabImport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "prefabDependencyReport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "choosePrefabVariant",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "favoritePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "isPrefabFavorite",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recentPrefabs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportPrefabPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importPrefabPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setTileOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "fillTiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "fillTilesOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "smartFill",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "paintPoints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "floodFill",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "replaceTiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "drawLine",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "drawRectangleOutline",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "drawCircle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "randomFill",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "proceduralFill",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "scatterTiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateBiome",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "paintPattern",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyRuleTiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generatePath",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateRoad",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateRiver",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateRoom",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateDungeon",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "replaceByProperties",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearAreaOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "revertArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "revertAreaOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "undoLast",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "redoLast",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resetMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compactMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "diagnoseMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "diagnoseMapSync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "changeRegionId",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "changeTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "swapTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "swapTileAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "swapArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "swapAreaAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "usePrefab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "getTileId",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "tileCodeAt",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "tileIdFromCode",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "tileCodeFromId",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "inspectTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "logTileInfo",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "tileIdInList",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "autotileInList",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "tileAhead",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "autotileAhead",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "checkAreaEvents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "copyArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "pasteArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "transformClipboard",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clipboardContents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearClipboard",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "eventInfoAt",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "moveSpawnedEvent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "duplicateEvent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteSpawnedEvent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateSpawnedEvent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "bulkUpdateSpawnedEvents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "bulkMoveSpawnedEvents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "bulkDeleteSpawnedEvents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "editEventPage",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerEventTemplate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "captureEventTemplate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listEventTemplates",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeEventTemplate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resolveEventTemplate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "spawnEventTemplate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "spawnEventTemplateOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportEventTemplatePack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importEventTemplatePack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchEvents",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchEventsOnMapAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateEvent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "beginEditTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "commitEditTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cancelEditTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "editTransactionState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "undoTransactionChange",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "redoTransactionChange",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recoverEditTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "discardEditRecovery",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createCheckpoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listCheckpoints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "restoreCheckpoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteCheckpoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportPatchPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importPatchPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewPatchImport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateStore",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "diffMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "downloadJson",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "bakeMapToFile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listBakeBackups",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "rollbackBake",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewMapTransform",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "transformMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resizeMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "rotateMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "mirrorMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cropMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "batchTransformMaps",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerCompatibilityAdapter",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "unregisterCompatibilityAdapter",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerAdapterProfile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "activateAdapterProfile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listAdapterProfiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compatibilityDiagnostics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "refreshCompatibility",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "performanceDiagnostics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "operationLog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "linkMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "unlinkMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "editingMapId",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "openRuntimeEditor",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "openRemoteMapEditor",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "openTileStudio",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "closeTileStudio",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "closeRuntimeEditor",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "toggleRuntimeEditor",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runtimeEditorState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "editorPreferences",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setEditorPreference",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setEditorZoom",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setEditorLayerState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "isolateEditorLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "showAllEditorLayers",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setEditorOverlay",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setEditorKeyBinding",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "saveBrushPreset",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "captureBrushPreset",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listBrushPresets",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyBrushPreset",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteBrushPreset",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "selectEditorArea",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "copyEditorSelection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cutEditorSelection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteEditorSelection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "transformEditorSelection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "moveEditorSelection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resizeClipboard",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "addMapBookmark",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listMapBookmarks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeMapBookmark",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportWorkspaceBundle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewWorkspaceImport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importWorkspaceBundle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "startWorkspaceBridge",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "stopWorkspaceBridge",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "workspaceBridgeState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "favoriteTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setAnimationFrames",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listAuthoringLayers",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "activeAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setActiveAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "reorderAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "duplicateAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "mergeAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteAuthoringLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createRectMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createRegionMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listMasks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resolveMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "combineMasks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteMask",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "addModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listModifiers",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resolveModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "regenerateModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setModifierEnabled",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewModifier",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "placePrefabInstance",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPrefabInstances",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "refreshPrefabInstance",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "refreshAllPrefabInstances",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "unlinkPrefabInstance",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deletePrefabInstance",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "prefabInstanceDiagnostics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateTerrainFields",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateClimateBiome",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "findTerrainPath",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateTerrainRoad",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateDownhillRiver",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateWaveFunctionMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "learnWfcRulesFromMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWfcRuleSets",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateWaveFunctionMapBacktracking",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateDungeonConnectivity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "generateValidatedDungeon",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "scatterPrefabs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runGeneratorGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createChangeSet",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listChangeSets",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportChangeSet",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importChangeSet",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteChangeSet",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyChangeSet",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "threeWayMergeSnapshots",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resolveMergeConflicts",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyMergeResult",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchProject",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "replaceProjectTiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateMapSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateProjectMaps",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createProjectSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listProjectSnapshots",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "restoreProjectSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteProjectSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "projectAuditReport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "projectDependencyAudit",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "beginProjectTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "projectTransactionState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "commitProjectTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "rollbackProjectTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recoverProjectTransaction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listProjectTransactions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createWorkspaceBranch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorkspaceBranches",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "switchWorkspaceBranch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "mergeWorkspaceBranch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteWorkspaceBranch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "addReviewComment",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listReviewComments",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateReviewComment",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteReviewComment",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createReviewThread",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listReviewThreads",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "replyReviewThread",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateReviewThreadStatus",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteReviewThread",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recordCompatibilityRun",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listCompatibilityRuns",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recordAssetAudit",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listAssetAudits",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setRecoveryPolicy",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "productionPreferences",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportProductionHandoff",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldRecipes",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateWorldRecipeCatalog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "loadWorldRecipeCatalog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportWorldRecipePack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "importWorldRecipePack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "triggerWorldRecipes",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "queueWorldRecipeTrigger",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setWorldRecipeEnabled",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resetWorldRecipeState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRecipeDiagnostics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "getWorldState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setWorldState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteWorldState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerWorldRecipeCondition",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerWorldRecipeAction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "explainWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "replayWorldRecipeLog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setWorldRecipeBreakpoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldRecipeBreakpoints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resumeWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setWorldRecipeWatch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldRecipeWatch",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldRecipeWatches",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearWorldRecipeDebugHistory",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRecipeDebugSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "stepWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRecipePerformance",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runWorldRecipeScenario",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runWorldRecipeTestSuite",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldClock",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setWorldClock",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "advanceWorldClock",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "addWorldFact",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldFact",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "hasWorldFact",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldZone",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldZone",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldZones",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldZonesAt",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldEntity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldEntity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldEntities",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateWorldEntity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldEntity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldResource",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldResource",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldResources",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "harvestWorldResource",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "scheduleWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cancelWorldSchedule",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldSchedules",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewWorldPackInstall",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "installWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldPacks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "uninstallWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "rollbackWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldPackHistory",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldPackLockfile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportWorldPack",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "packIntegrityDigest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerPackPublisher",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "trustPackPublisher",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listTrustedPackPublishers",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "verifyWorldPackSignature",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "verifyWorldPackSignatureAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "installWorldPackAsync",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldNpc",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldNpc",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldNpcs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateWorldNpc",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldNpc",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "npcScheduledActivity",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "refreshWorldNpcActivities",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "simulateWorldTimeline",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldNpcRoute",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldNpcRoutes",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldNpcRoute",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewNpcJourney",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "startNpcJourney",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "advanceNpcJourneys",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldNpcOccupancy",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldRuleLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRuleLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldRuleLayers",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldRuleLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "paintWorldRules",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "saveWorldRuleBrush",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldRuleBrushes",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeWorldRuleBrush",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "paintWorldRuleBrush",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "filterWorldRuleLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "ruleLayerStatistics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldRulesAt",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compileWorldRuleLayer",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateBiomeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineBiomeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listBiomeGraphs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeBiomeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "previewBiomeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runBiomeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cacheBiomeStage",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "biomeStageCache",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearBiomeCache",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "lockBiomeCells",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "unlockBiomeCells",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listBiomeLocks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runtimeBudget",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "performanceHeatmap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "optimizeWorldRuntime",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runWorldBenchmark",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldBenchmarks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldReferenceGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "worldZoneSpatialDiagnostics",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createRecoverySnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listRecoverySnapshots",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "restoreRecoverySnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "deleteRecoverySnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runCompatibilityLab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerContentCatalog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listContentCatalogs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchContentCatalog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "subscribeContentCatalog",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listCatalogSubscriptions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeCatalogSubscription",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "checkCatalogUpdates",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "installContentCatalogItem",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "instantiateWorldRecipe",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineWorldMapVariant",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldMapVariants",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyWorldMapVariant",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "exportCanonicalWorkspace",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerStudioExtension",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerExtensionBrush",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runExtensionBrush",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerExtensionGenerator",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runExtensionGenerator",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerExtensionValidator",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listStudioExtensions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "analyzeWorldAtlas",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listWorldAtlases",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "analyzeEventQuestGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listEventQuestGraphs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "analyzeMapIntelligence",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "repairMapIntelligently",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createVisualHistorySnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listVisualHistory",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "diffVisualHistory",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compareVersions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "satisfiesVersion",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "resolvePackDependencies",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerPackRepository",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPackRepositories",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateExtensionManifest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "installExtensionManifest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setExtensionPermissions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listExtensionManifests",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "removeExtensionManifest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createExtensionContext",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "simulateNpcDirector",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runGoldenMapTest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runProductionValidation",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listProductionValidations",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createProjectDeploymentReport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listProjectDeploymentReports",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "startLiveProductionSession",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "liveProductionState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "stopLiveProductionSession",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listLiveProductionSessions",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "pumpLiveProductionSession",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "applyLiveProductionCommand",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "startPlaytestRecording",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "recordPlaytestAction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "stopPlaytestRecording",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPlaytestRecordings",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createScenarioFromRecording",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPlaytestScenarios",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runRecordedScenario",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "validateEventCommandList",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "defineSemanticTileset",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "semanticTile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listSemanticTilesets",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "analyzeSemanticMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "configureExtensionSandbox",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "extensionSandboxState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runSandboxedExtensionContribution",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runBudgetedExtensionContribution",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchUnifiedContent",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createContentCollection",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listContentCollections",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createCollaborationBundle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listCollaborationBundles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createReleaseFingerprint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listReleaseFingerprints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "buildCleanProductionBundle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "negotiateLiveProduction",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cleanLiveProductionArtifacts",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runPlaytestJourney",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listPlaytestJourneyRuns",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runProductionTestSuite",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listProductionTestRuns",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createUniversalRecoveryPoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "restoreUniversalRecoveryPoint",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listUniversalRecoveryPoints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchProjectReferences",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "planReferenceRename",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "analyzePassabilityMap",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "detectMapSoftlocks",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "performanceCenterReport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "configureExtensionSecurityProfile",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listExtensionSecurityProfiles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerExtensionPublisher",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "verifyExtensionPublisher",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compareCollaborationBundles",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createCollaborationMergePlan",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "registerCompatibilityProfileV15",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "runCompatibilityProfilesV15",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "listCompatibilityProfilesV15",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "compareReleaseFingerprints",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createReleaseManifestV15",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "validateProductionHandoff",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createVisualMapDraft",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "paintVisualMapDraft",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "undoVisualMapDraft",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "commitVisualMapDraft",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "compileWorldRecipeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "lockWorldRecipeGraphCells",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "regenerateWorldRecipeGraph",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createRoundTripPlan",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createQuestProject",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createCutsceneTimeline",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runPlaytestLab",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createBugReportBundle",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setCreatorExperienceV16",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "registerContentLibraryItem",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "searchContentLibraryV16",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "createThreeWayProjectMerge",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createSourceControlSnapshot",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "setExtensionCapabilityPolicyV16",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "safeModeV16",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "productionDashboardV16",
+      "kind": "function",
+      "stability": "compatibility"
+    },
+    {
+      "name": "captureError",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "errorReports",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearErrorReports",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "guardedOperation",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "createOperationJob",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "updateOperationJob",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "cancelOperationJob",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "operationJobState",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "listOperationJobs",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "onJobProgress",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runChunkedOperation",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "fuzzValidate",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "estimateStoreBytes",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "pruneProjectData",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runtimeSavePayload",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "runCompatibilitySelfTest",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "systemHealthReport",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "lastCommandResult",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "clearCommandResult",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "onCommandResult",
+      "kind": "function",
+      "stability": "stable"
+    },
+    {
+      "name": "onChange",
+      "kind": "function",
+      "stability": "stable"
+    }
+  ]
+}

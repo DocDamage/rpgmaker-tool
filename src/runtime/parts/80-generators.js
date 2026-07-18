@@ -860,8 +860,9 @@
         const propagationLimit = Math.max(1000, integer(options.propagationLimit, possibilities.size * rules.length * 16));
         const propagate = queue => {
             let steps = 0;
-            while (queue.length && steps++ < propagationLimit) {
-                const point = queue.shift();
+            let queueHead = 0;
+            while (queueHead < queue.length && steps++ < propagationLimit) {
+                const point = queue[queueHead++];
                 const sourceSet = possibilities.get(coordinateKey(point.x, point.y));
                 if (!sourceSet) continue;
                 for (const [direction, [dx, dy, opposite]] of Object.entries(directions)) {
@@ -935,9 +936,10 @@
         }
         if (!walkable.size) return { ok: false, reason: "No floor cells.", reachable: 0, total: 0 };
         const queue = [[...walkable][0].split(",").map(Number)];
+        let queueHead = 0;
         const visited = new Set();
-        while (queue.length) {
-            const [x, y] = queue.shift();
+        while (queueHead < queue.length) {
+            const [x, y] = queue[queueHead++];
             const key = coordinateKey(x, y);
             if (visited.has(key) || !walkable.has(key)) continue;
             visited.add(key);
@@ -1447,4 +1449,3 @@
     function editingMapId() {
         return ($gameMap && $gameMap._hybridLinkedMapId) || $gameMap.mapId();
     }
-

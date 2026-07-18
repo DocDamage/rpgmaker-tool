@@ -1,0 +1,21 @@
+{
+  "format": "HybridTileGraftRpgMakerEngineMatrix",
+  "version": 1,
+  "supportedRange": ">=1.8.0 <=1.10.0",
+  "engines": [
+    {
+      "version": "1.8.0",
+      "role": "minimum-supported",
+      "coreSource": "Official RPG Maker MZ bundled corescript v1.8.0",
+      "marker": "tests/evidence/rpgmaker/1.8.0/real-engine-smoke.json",
+      "attestation": "tests/evidence/rpgmaker/1.8.0/real-engine-smoke.attestation.json"
+    },
+    {
+      "version": "1.10.0",
+      "role": "current-stable",
+      "coreSource": "Official Steam RPG Maker MZ new-project corescript",
+      "marker": "tests/evidence/rpgmaker/1.10.0/real-engine-smoke.json",
+      "attestation": "tests/evidence/rpgmaker/1.10.0/real-engine-smoke.attestation.json"
+    }
+  ]
+}

@@ -20,12 +20,17 @@
 - Moved v17 Studio assets out of production and into migration fixtures. Historical v9–v16 specialist workbenches remain explicit Expert-only modules.
 - Added content-hashed PWA asset verification and an explicit reload-to-update flow instead of immediate `skipWaiting` activation.
 - Added Open Recent, Practice Project, Pip behavior, recovery retention/storage health, and semantic tile labels/search.
+- Unified extension capability declarations behind one generated contract shared by runtime enforcement, the extension JSON Schema, and SDK documentation.
+- Formalized all 540 public runtime exports in a generated stability inventory and matching TypeScript declaration file.
+- Added structured success/failure results for every Plugin Manager command, including optional variable, switch, common-event, and listener outputs.
+- Reworked breadth-first runtime traversals to use indexed queues so large operations no longer pay repeated array-shift costs.
 
 ### Verification
 
 - Added end-to-end DOM coverage for paint → delta recovery → undo/redo → Apply → persisted reload.
 - Added 250×250 viewport-culling, 120,000-cell flood-fill, recovery failure/fallback, v17 migration, schema/example, asset-manifest, Ed25519 tamper, Electron atomic-write/security, and CLI SHA tests.
 - Added an HTTP-served Playwright suite with service-worker and responsive viewport journeys. See `TEST_REPORT.md` for the execution record of this source archive.
+- Added ESLint to the release gate, generated-contract drift tests, and an official-core RPG Maker MZ 1.8.0/1.10.0 matrix with real save/reset/load persistence, cleanup, frame timing, and benchmark evidence.
 
 ## 18.0.0 — 2026-07-18
 

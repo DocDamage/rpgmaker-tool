@@ -6,6 +6,8 @@ Worldsmith keeps a creator-visible `capabilityPolicy`: enabled/reviewed state, g
 
 ## Permissions
 
+`EXTENSION_CAPABILITIES.md` is generated from the canonical capability registry and is authoritative for manifest validation, runtime permission grants, Worldsmith capability policies, and JSON Schema values. The summary below describes the most common extension-context operations.
+
 - `map:read` reads composed map snapshots.
 - `map:write` creates reversible map changes.
 - `world:read` reads World Recipe state and catalogs.

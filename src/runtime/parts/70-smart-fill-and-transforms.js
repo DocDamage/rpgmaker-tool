@@ -90,9 +90,10 @@
         const originKeys = new Set(origins.map(point => coordinateKey(point.x, point.y)));
         const visited = new Set();
         const queue = origins.map(point => ({ x: point.x, y: point.y, d: 0 }));
+        let queueHead = 0;
         const output = [];
-        while (queue.length) {
-            const current = queue.shift();
+        while (queueHead < queue.length) {
+            const current = queue[queueHead++];
             const key = coordinateKey(current.x, current.y);
             if (visited.has(key) || current.d > distance) continue;
             visited.add(key);
@@ -234,9 +235,10 @@
         const terrainTags = normalizeList(options.terrainTags).map(Number);
         const visited = new Set();
         const queue = [origin];
+        let queueHead = 0;
         const points = [];
-        while (queue.length && points.length < maxCells) {
-            const point = queue.shift();
+        while (queueHead < queue.length && points.length < maxCells) {
+            const point = queue[queueHead++];
             const pointKey = coordinateKey(point.x, point.y);
             if (visited.has(pointKey) || !inBounds(point.x, point.y)) continue;
             visited.add(pointKey);
@@ -655,4 +657,3 @@
         }
         return { results, errors, ok: errors.length === 0 };
     }
-

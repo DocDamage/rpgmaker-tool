@@ -12,6 +12,36 @@
         };
     }
 
+    function instrumentHybridPluginCommands() {
+        const registry = PluginManager._commands || PluginManager.commands;
+        if (!registry) return 0;
+        let count = 0;
+        for (const [key, original] of Object.entries(registry)) {
+            if (!key.startsWith(`${PLUGIN_NAME}:`) || typeof original !== "function" || original._hybridTileGraftInstrumented) continue;
+            const command = key.slice(PLUGIN_NAME.length + 1);
+            const wrapped = function(args = {}) {
+                const context = { command, args: deepClone(args || {}), startedAt: Date.now(), startedClock: clockNow(), pending: false, completed: false };
+                this._hybridTileGraftCommandContext = context;
+                try {
+                    const value = original.call(this, args);
+                    if (!context.pending) publishPluginCommandResult(context, "succeeded", value);
+                    return value;
+                } catch (error) {
+                    const report = captureError(error, { operation: "pluginCommand", command });
+                    context.errorReportId = report.id;
+                    publishPluginCommandResult(context, "failed", null, error);
+                    throw error;
+                } finally {
+                    if (!context.pending && this._hybridTileGraftCommandContext === context) delete this._hybridTileGraftCommandContext;
+                }
+            };
+            Object.defineProperty(wrapped, "_hybridTileGraftInstrumented", { value: true });
+            registry[key] = wrapped;
+            count++;
+        }
+        return count;
+    }
+
     PluginManager.registerCommand(PLUGIN_NAME, "graftArea", function(args) {
         const options = Object.assign(commandCoordinateOptions(args, this), {
             sourceMapId: evalNumber(args.sourceMapId, 0, this),
@@ -1023,6 +1053,7 @@
         waitForPromise(this, loadWorldRecipeCatalog());
     });
 
+    instrumentHybridPluginCommands();
     loadWorldRecipeCatalog().catch(error => captureError(error, { operation: "loadWorldRecipeCatalog" }));
 
     console.log(`${PLUGIN_NAME} v${VERSION} loaded.`);

@@ -165,12 +165,26 @@
 
     function waitForPromise(interpreter, promise) {
         if (!interpreter || !interpreter.setWaitMode) return promise;
+        const context = interpreter._hybridTileGraftCommandContext || null;
+        if (context) context.pending = true;
         interpreter._hybridTileGraftWaiting = true;
         interpreter.setWaitMode("hybridTileGraft");
-        promise.catch(error => console.error(error)).finally(() => {
+        const handled = Promise.resolve(promise).then(value => {
+            if (context) publishPluginCommandResult(context, "succeeded", value);
+            return value;
+        }).catch(error => {
+            const report = captureError(error, { operation: "pluginCommand", command: context?.command || "unknown" });
+            if (context) {
+                context.errorReportId = report.id;
+                publishPluginCommandResult(context, "failed", null, error);
+            }
+            console.error(error);
+            return undefined;
+        }).finally(() => {
             interpreter._hybridTileGraftWaiting = false;
+            if (interpreter._hybridTileGraftCommandContext === context) delete interpreter._hybridTileGraftCommandContext;
         });
-        return promise;
+        return handled;
     }
 
     // -------------------------------------------------------------------------
@@ -979,10 +993,11 @@
         const origin = { x: runtimeEditorState.cursorX, y: runtimeEditorState.cursorY };
         const sourceTile = readTile(snapshot.data, snapshot.width, snapshot.height, origin.x, origin.y, z);
         const queue = [origin];
+        let queueHead = 0;
         const visited = new Set();
         const points = [];
-        while (queue.length) {
-            const point = queue.shift();
+        while (queueHead < queue.length) {
+            const point = queue[queueHead++];
             const key = coordinateKey(point.x, point.y);
             if (visited.has(key) || !inBounds(point.x, point.y, snapshot.width, snapshot.height)) continue;
             visited.add(key);
@@ -2974,4 +2989,3 @@
             });
         };
     }
-

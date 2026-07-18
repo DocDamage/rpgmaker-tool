@@ -247,8 +247,8 @@
         }
         if (run >= 12) repeated.push({ tileId: last, length: run });
         const landmarks = []; for (const event of map.events || []) if (event) { const name = String(event.name || ""); const kind = /door/i.test(name) ? "door" : /stair|ladder/i.test(name) ? "stairs" : /treasure|chest/i.test(name) ? "treasure" : /shop|merchant/i.test(name) ? "shop" : /exit|transfer/i.test(name) ? "exit" : "event"; landmarks.push({ eventId: event.id, name, kind, x: event.x, y: event.y }); }
-        const start = landmarks[0] || { x: 0, y: 0 }; const queue = [[integer(start.x), integer(start.y)]]; const reachable = new Set();
-        while (queue.length) { const [x, y] = queue.shift(); const key = `${x},${y}`; if (x < 0 || y < 0 || x >= width || y >= height || blocked.has(key) || reachable.has(key)) continue; reachable.add(key); queue.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]); }
+        const start = landmarks[0] || { x: 0, y: 0 }; const queue = [[integer(start.x), integer(start.y)]]; let queueHead = 0; const reachable = new Set();
+        while (queueHead < queue.length) { const [x, y] = queue[queueHead++]; const key = `${x},${y}`; if (x < 0 || y < 0 || x >= width || y >= height || blocked.has(key) || reachable.has(key)) continue; reachable.add(key); queue.push([x+1,y],[x-1,y],[x,y+1],[x,y-1]); }
         const unreachable = landmarks.filter(item => !reachable.has(`${item.x},${item.y}`)); const issues = unreachable.map(item => ({ severity: "warning", type: "unreachable-landmark", eventId: item.eventId, message: `${item.name || `Event ${item.eventId}`} is not reachable from the semantic start point.` }));
         for (const item of repeated.slice(0, 20)) issues.push({ severity: "info", type: "visual-repetition", tileId: item.tileId, message: `Tile ${item.tileId} repeats for ${item.length} cells.` });
         return { format: "HybridSemanticMapReport", version: 1, pluginVersion: VERSION, mapId: integer(options.mapId || (typeof $gameMap !== "undefined" && $gameMap ? $gameMap.mapId() : 0)), width, height, categories, landmarks, unreachable, reachableCells: reachable.size, blockedCells: blocked.size, repeated: repeated.slice(0, 50), issues, ok: !issues.some(item => item.severity === "error") };
@@ -309,4 +309,3 @@
         if (bundle.worldDirector) for (const key of editorOnly) delete bundle.worldDirector[key];
         bundle.format = "HybridCleanProductionBundle"; bundle.version = 1; bundle.pluginVersion = VERSION; bundle.createdAt = new Date().toISOString(); bundle.release = createReleaseFingerprint(options); bundle.stripped = editorOnly; return bundle;
     }
-

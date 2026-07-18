@@ -1,0 +1,10 @@
+{
+  "format": "HybridTileGraftPublicApiPolicy",
+  "version": 1,
+  "apiVersion": 1,
+  "defaultStability": "stable",
+  "compatibilityNamePattern": "V(?:9|1[0-6])$",
+  "experimental": [],
+  "deprecated": {},
+  "removalPolicy": "Stable APIs require a major release to remove. Deprecated APIs remain for at least two minor releases and include a documented replacement when one exists."
+}

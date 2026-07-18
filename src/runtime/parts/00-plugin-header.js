@@ -359,6 +359,30 @@
  * @default 100
  * @desc Maximum structured errors retained for the health report.
  *
+ * @param commandResultVariableId
+ * @text Command Result JSON Variable
+ * @type variable
+ * @default 0
+ * @desc Optional variable that receives the latest structured plugin-command result as JSON. 0 disables it.
+ *
+ * @param commandSuccessSwitchId
+ * @text Command Success Switch
+ * @type switch
+ * @default 0
+ * @desc Optional switch set ON after success and OFF after failure. 0 disables it.
+ *
+ * @param commandFailureSwitchId
+ * @text Command Failure Switch
+ * @type switch
+ * @default 0
+ * @desc Optional switch set ON after failure and OFF after success. 0 disables it.
+ *
+ * @param commandFailureCommonEventId
+ * @text Command Failure Common Event
+ * @type common_event
+ * @default 0
+ * @desc Optional common event reserved after a plugin command fails. 0 disables it.
+ *
  * @param maxImportBytes
  * @text Import Size Limit (Bytes)
  * @type number
@@ -1323,6 +1347,10 @@
     const PERFORMANCE_WARNING_MS = Math.max(1, finiteNumber(params.performanceWarningMs, 16));
     const OPERATION_LOG_LIMIT = Math.max(20, integer(params.operationLogLimit, 250));
     const ERROR_REPORT_LIMIT = Math.max(10, integer(params.errorReportLimit, 100));
+    const COMMAND_RESULT_VARIABLE_ID = Math.max(0, integer(params.commandResultVariableId, 0));
+    const COMMAND_SUCCESS_SWITCH_ID = Math.max(0, integer(params.commandSuccessSwitchId, 0));
+    const COMMAND_FAILURE_SWITCH_ID = Math.max(0, integer(params.commandFailureSwitchId, 0));
+    const COMMAND_FAILURE_COMMON_EVENT_ID = Math.max(0, integer(params.commandFailureCommonEventId, 0));
     const MAX_IMPORT_BYTES = Math.max(1024 * 1024, integer(params.maxImportBytes, 20 * 1024 * 1024));
     const WORLD_RECIPE_FILE = String(params.worldRecipeFile ?? "HybridWorldRecipes.json").trim();
     const AUTO_WORLD_RECIPES = String(params.autoWorldRecipes ?? "true") === "true";
@@ -1332,6 +1360,7 @@
     const PREFAB_REGEX = /<Prefab:\s*([^,>]+),\s*(-?\d+),\s*(-?\d+),\s*(\d+),\s*(\d+)>/gi;
     const PARAMETER_PREFABS = parseStructArray(params.prefabCatalog).map(normalizePrefabDefinition).filter(Boolean);
     const changeListeners = new Set();
+    const commandResultListeners = new Set();
     const compatibilityAdapters = new Map();
     const adapterProfiles = new Map();
     const performanceSamples = new Map();
@@ -1362,4 +1391,3 @@
     let worldRecipeLastPlayerTile = "";
     let worldRecipePumping = false;
     const worldRecipeQueue = [];
-

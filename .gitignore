@@ -1,6 +1,7 @@
 node_modules/
 dist/
 test-results/
+engine-tests/projects/
 playwright-report/
 blob-report/
 coverage/
@@ -10,4 +11,3 @@ coverage/
 *.htg-tmp-*
 .DS_Store
 Thumbs.db
-

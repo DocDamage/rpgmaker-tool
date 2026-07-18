@@ -5,6 +5,7 @@
     "output": "HybridTileGraft.js",
     "parts": [
       "src/runtime/parts/00-plugin-header.js",
+      "src/runtime/generated/05-extension-capability-contract.js",
       "src/runtime/parts/10-general-utilities.js",
       "src/runtime/parts/20-save-and-migration.js",
       "src/runtime/parts/30-tile-map-core.js",

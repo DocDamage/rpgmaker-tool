@@ -539,9 +539,11 @@
         runtimeSavePayload,
         runCompatibilitySelfTest,
         systemHealthReport,
+        lastCommandResult,
+        clearCommandResult,
+        onCommandResult,
         onChange(callback) {
             if (typeof callback === "function") changeListeners.add(callback);
             return () => changeListeners.delete(callback);
         }
     };
-

@@ -33,9 +33,12 @@ The packaged Electron bridge uses atomic temporary-file replacement for project 
 - **Stronger integrity:** canonical SHA-256 fingerprints, Ed25519 pack verification, executable JSON Schemas, content-hashed PWA assets, and explicit legacy-FNV compatibility replace ambiguous trust signals.
 - **Safer updates and releases:** the PWA no longer activates a new shell in the middle of an editing session, and release evidence remains bound to the exact canonical project fingerprint.
 - **Maintainable source:** the shipped RPG Maker plugin is still one file, but it is generated from named runtime parts; active Studio and desktop adapters live under `src/`, while v17 is retained only as a migration fixture.
+- **Contracted integrations:** one generated capability catalog now drives the runtime, extension schema, and SDK documentation; the generated public-API inventory and TypeScript declarations classify every exported name by stability.
+- **Observable plugin commands:** every Plugin Manager command publishes a structured success or failure result. Projects may read it through the public API or configure a result variable, success/failure switches, and a failure common event.
+- **Measured engine compatibility:** retained official-core evidence covers the minimum supported MZ 1.8.0 core and current 1.10.0 core, including an actual save/reset/load cycle, temporary-save cleanup, frame timing, and a bounded world benchmark.
 - **Complete first-run flow:** Open Project, Open Recent, and Practice Project are visible from Home; the six-step journey, Pip behavior, recovery retention, storage health, and semantic tile search are configurable and inspectable.
 
-See `V18_1_STABILITY_AND_SCALE.md` and `IMPLEMENTATION_REPORT.md` for the implementation map, formats, and compatibility details.
+See `V18_1_STABILITY_AND_SCALE.md` and `IMPLEMENTATION_REPORT.md` for the implementation map. Generated integration contracts are in `PUBLIC_API.md`, `HybridTileGraft.api.json`, `HybridTileGraft.d.ts`, `EXTENSION_CAPABILITIES.md`, and `ENGINE_COMPATIBILITY.md`.
 
 ## v18 product foundation
 
@@ -184,16 +187,21 @@ The in-engine plugin exposes matching project transactions, branches, review com
 
 World Recipe extensions can register new safe condition and action handlers through `registerWorldRecipeCondition(type, handler)` and `registerWorldRecipeAction(type, handler)`.
 
+Use `EXTENSION_CAPABILITIES.md` as the canonical capability reference; it is generated from the same source as runtime enforcement and `schemas/HybridStudioExtension.schema.json`. Use `PUBLIC_API.md` and `HybridTileGraft.d.ts` for the generated in-engine API contract.
+
+Plugin Manager commands publish `HybridTileGraftCommandResult` records. Configure **Command Result JSON Variable**, **Command Success Switch**, **Command Failure Switch**, and **Command Failure Common Event** globally, or inspect `HybridTileGraft.lastCommandResult()` and subscribe with `HybridTileGraft.onCommandResult(listener)`.
+
 ## Test
 
 ```sh
 npm install
+npm run lint
 npm test
 npx playwright install chromium
 npm run test:e2e
 ```
 
-The integration suite covers the runtime plugin, Studio DOM, exact tile addressing, persistence migration, transactions, reviews, generators, and worker WFC. Playwright covers full browser workflows and keyboard focus.
+The integration suite covers the runtime plugin, generated contracts, Studio DOM, exact tile addressing, persistence migration, transactions, reviews, generators, worker WFC, and the retained RPG Maker engine matrix. Playwright covers full browser workflows and keyboard focus.
 
 ## Safety
 
