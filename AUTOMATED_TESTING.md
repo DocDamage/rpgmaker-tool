@@ -16,6 +16,7 @@ npm test
 `npm test` rebuilds generated release files first, verifies that the generated tree is current, and runs:
 
 - RPG Maker runtime/plugin API and save-migration tests;
+- source-bound evidence from an official RPG Maker MZ 1.10.0 engine smoke test;
 - the v18.1 Studio DOM journey, including paint → delta recovery → undo/redo → Apply → persisted map;
 - map-delta, three-way merge, schema, SHA-256, Ed25519, storage-retention, and PWA contract tests;
 - v17-to-v18.1 migration plus project-first/browser-fallback and dual-failure recovery tests;
@@ -69,7 +70,17 @@ The CLI is read-only by default. It checks core database files, MapInfos/map cor
 
 ## Real-engine evidence
 
-A production release still requires at least one playtest in RPG Maker MZ with the actual plugin order and production content. A Playtest Lab launch is not automatically recorded as a pass. Human-attested path evidence, checkpoints, migration results, and release gates are fingerprint-bound and become stale whenever the canonical project state changes.
+The repository includes a repeatable test-only plugin at `tests/fixtures/rpgmaker/HybridTileGraftSmokeProbe.js`. To refresh the evidence:
+
+1. Create a new isolated RPG Maker MZ project.
+2. Copy `HybridTileGraft.js` and the probe into the project's `js/plugins` folder.
+3. Enable `HybridTileGraft` first and `HybridTileGraftSmokeProbe` immediately after it.
+4. Start a new playtest and wait for the map. A successful run displays a green PASS banner and writes `real-engine-smoke.json` in the project root.
+5. Replace the retained marker and attestation under `tests/evidence/rpgmaker`, updating the source hashes only after observing the PASS result.
+
+`npm run test:rpgmaker-evidence` verifies probe syntax, marker contents, and hashes for the exact plugin and probe that were tested. It deliberately fails when either source file changes, forcing the engine evidence to be refreshed.
+
+The current source passed this procedure in the official Steam version of RPG Maker MZ 1.10.0 on 2026-07-18. A production release still requires a playtest with the actual production plugin order and content. A Playtest Lab launch is not automatically recorded as a pass. Human-attested path evidence, checkpoints, migration results, and release gates are fingerprint-bound and become stale whenever the canonical project state changes.
 
 ## CI example
 

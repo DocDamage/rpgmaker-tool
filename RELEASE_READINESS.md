@@ -9,6 +9,7 @@ This file defines what “complete” means for the source package and what stil
 - `npm test` passes all deterministic application suites.
 - `npm run test:e2e` passes all HTTP/browser/PWA journeys.
 - `npm run test:e2e:file` passes all supported local-file journeys.
+- The retained source-bound smoke marker passes `npm run test:rpgmaker-evidence` for the exact `HybridTileGraft.js` source under release.
 - `npm run dist:dir` produces a runnable unpacked desktop application.
 - Tag CI builds all documented platform targets and enforces signing on Windows and macOS.
 - The source revision is committed so generated artifacts and reports have a rollback point.
@@ -18,6 +19,8 @@ Run the complete local source gate with `npm run verify:release`.
 ## Game-release gates
 
 These cannot be inherited from the Studio source package. They must be completed against the exact RPG Maker MZ project fingerprint being shipped:
+
+The official RPG Maker MZ 1.10.0 isolated compatibility smoke passed on 2026-07-18. That closes the source plugin's real-engine boot/API gate, but it does not replace the following production-project checks:
 
 - Run the critical path in RPG Maker MZ with the production plugin order and record the attestation.
 - Exercise save creation, save reload, and any supported migration path.
