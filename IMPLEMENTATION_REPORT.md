@@ -40,8 +40,9 @@ The verified install path canonicalizes the unsigned payload and verifies Ed2551
 
 1. concatenates named runtime parts into `HybridTileGraft.js`;
 2. copies active Studio and desktop sources into the release root;
-3. embeds every JSON Schema in `HybridTileSchemasV18.js`; and
-4. writes `asset-manifest.json` with SHA-256 and byte size for release assets.
+3. generates the canonical extension-capability runtime/schema/docs, public-API inventory/declarations, and engine compatibility document;
+4. embeds every JSON Schema in `HybridTileSchemasV18.js`; and
+5. writes `asset-manifest.json` with SHA-256 and byte size for release assets.
 
 `npm run check:generated` compares the expected generated content without writing and exits nonzero if it is stale.
 
@@ -51,6 +52,6 @@ The verified install path canonicalizes the unsigned payload and verifies Ed2551
 - v17 is removed from production loading and retained as a migration fixture.
 - The runtime save schema stays at 18; Studio-only recovery records advance independently to map-draft version 3.
 - FNV remains available for legacy records and map checksums where explicitly labeled, but it is no longer the default release identity or signature substitute.
-- A real RPG Maker playtest and platform installer signing remain external release evidence; automated structural checks do not claim either.
+- Source-bound real-engine evidence covers the official MZ 1.8.0 and 1.10.0 cores. Production-project playtesting, third-party plugin order, publicly trusted signing/notarization, and deployed updates remain external game-release evidence.
 
 See `TEST_REPORT.md` for the exact verification record and environment limitations for this archive.

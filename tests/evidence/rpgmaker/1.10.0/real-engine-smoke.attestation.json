@@ -1,0 +1,13 @@
+{
+  "format": "HybridTileGraftRealEngineSmokeAttestation",
+  "version": 2,
+  "testedRevision": "7841b9b497985211d87d88d49b030b57cf950eb7",
+  "testedAt": "2026-07-18T23:56:08.996Z",
+  "engineSource": "Official Steam installation",
+  "engineVersion": "1.10.0",
+  "coreSource": "Official Steam RPG Maker MZ new-project corescript",
+  "pluginSourceSha256": "6315FB9BBDE298308CDFF1A6E60510641EE674E46817C53E45454211B368516C",
+  "probeSourceSha256": "163C2B2897E404E706ACA092BEB452439B8E3E732B5F9CB7444DDA101CFFE83B",
+  "markerSha256": "312E842C82A00E13DF681A3B16A6BBB07A1BB7CBA247465B76A17534A9760C2D",
+  "method": "Opened the isolated 1.10.0 project in the official RPG Maker MZ editor, enabled HybridTileGraft followed by HybridTileGraftSmokeProbe, started a new game, observed the green PASS banner, and retained the source-bound save/reset/load, cleanup, frame-timing, and benchmark marker."
+}

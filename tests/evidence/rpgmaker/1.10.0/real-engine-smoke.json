@@ -1,0 +1,79 @@
+{
+  "format": "HybridTileGraftRealEngineSmoke",
+  "version": 2,
+  "generatedAt": "2026-07-18T23:56:08.996Z",
+  "ok": true,
+  "rpgMakerVersion": "1.10.0",
+  "nwVersion": "0.48.4",
+  "pluginName": "HybridTileGraft",
+  "pluginVersion": "18.1.0",
+  "commandCount": 196,
+  "publicApiEntryCount": 540,
+  "mapReadyMs": 33009.96500020847,
+  "mapId": 1,
+  "player": {
+    "x": 8,
+    "y": 6,
+    "layer0TileId": 2816
+  },
+  "storeValidation": {
+    "ok": true,
+    "issueCount": 0,
+    "repaired": false
+  },
+  "diagnosis": {
+    "mapId": 1,
+    "patchCount": 0,
+    "tileWrites": 0,
+    "warningCount": 0
+  },
+  "health": {
+    "ok": true,
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "persistence": {
+    "ok": true,
+    "savefileId": 20,
+    "saveBytes": 4449,
+    "originalRegionId": 0,
+    "testRegionId": 1,
+    "patchCreated": true,
+    "resetStateMissing": true,
+    "resetRegionRestored": true,
+    "loadedStateMatched": true,
+    "loadedPatchCount": 1,
+    "diagnosedPatchCount": 1,
+    "temporarySaveRemoved": true
+  },
+  "frameTiming": {
+    "frames": 30,
+    "averageMs": 18.335699999999875,
+    "maximumMs": 66.60800000000017,
+    "p95Ms": 16.845000000001164
+  },
+  "benchmark": {
+    "iterations": 2,
+    "totalMs": 0.6899998988956213,
+    "sampleCount": 4
+  },
+  "checks": {
+    "apiPresent": true,
+    "pluginVersion": true,
+    "pluginName": true,
+    "registeredCommands": true,
+    "mapStarted": true,
+    "tileReadable": true,
+    "storeValid": true,
+    "mapDiagnosis": true,
+    "healthAvailable": true,
+    "saveReloadPersistence": true,
+    "saveFileMeasured": true,
+    "frameTimingMeasured": true,
+    "frameTimingWithinSmokeBudget": true,
+    "benchmarkCompleted": true,
+    "commandResultsAvailable": true
+  },
+  "errors": [],
+  "markerWritten": true
+}

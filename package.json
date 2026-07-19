@@ -124,6 +124,9 @@
       "COMPATIBILITY_PROFILES.md",
       "LICENSE"
     ],
+    "extraResources": [
+      "HybridTileGraft.d.ts"
+    ],
     "fileAssociations": [
       {
         "ext": "htgworkspace",
